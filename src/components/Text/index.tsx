@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { ITextProps } from '@/utils/interfaces';
-import { Text } from 'react-native';
+
+import {
+  Text as RNText,
+  StyleSheet,
+  TextProps,
+} from 'react-native';
 
 const PoppinsFont = {
   '100': 'Thin',
@@ -12,24 +16,27 @@ const PoppinsFont = {
   '700': 'Bold',
   '800': 'ExtraBold',
   '900': 'Black',
+  normal: 'Regular',
+  bold: 'Bold',
 };
 
-const CustomText = ({
-  title,
-  color = '#192252',
-  fontWeight = 'normal',
-  fontStyle = 'normal',
-  fontSize = 14,
-}: ITextProps) => {
-  const fontFamily = `Poppins-${PoppinsFont[fontWeight]??''}${
+interface ITextProps extends TextProps {
+  title: string;
+}
+
+const Text = (props: ITextProps) => {
+  const { fontWeight = '300', fontStyle } = StyleSheet.flatten(
+    props.style || {},
+  );
+  const fontFamily = `Poppins-${PoppinsFont[fontWeight]}${
     fontStyle === 'italic' ? 'Italic' : ''
   }`;
 
   return (
-    <Text style={[{ fontFamily, fontWeight, color, fontSize, fontStyle }]}>
-      {title}
-    </Text>
+    <RNText {...props} style={[props.style,{ fontFamily }]}>
+      {props.title}
+    </RNText>
   );
 };
 
-export default CustomText;
+export default Text;

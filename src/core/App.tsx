@@ -83,10 +83,12 @@ function App(): JSX.Element {
           <Section title="Text component">
             <CustomText
               title={'Text compontent'}
-              color="blue"
-              // fontWeight="700"
-              fontStyle="italic"
-              fontSize={18}
+              style={{
+                fontSize: 14,
+                fontWeight: '500',
+                color: 'blue',
+                fontStyle: 'italic'
+              }}
             />
           </Section>
           <TextInput
