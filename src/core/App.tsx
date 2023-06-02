@@ -5,7 +5,7 @@
  * @format
  */
 
-import CustomText from '@/components/Text';
+
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import {
@@ -13,7 +13,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
+  Text as RNText,
   TextInput,
   useColorScheme,
   View,
@@ -21,7 +21,7 @@ import {
 
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import { APP_NAME } from '@/config';
-import { useMergeState } from '@/components/Hooks';
+import { useMergeState, Text } from '@/components';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -31,7 +31,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
-      <Text
+      <RNText
         style={[
           styles.sectionTitle,
           {
@@ -39,8 +39,8 @@ function Section({ children, title }: SectionProps): JSX.Element {
           },
         ]}>
         {title}
-      </Text>
-      <Text
+      </RNText>
+      <RNText
         style={[
           styles.sectionDescription,
           {
@@ -48,7 +48,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
           },
         ]}>
         {children}
-      </Text>
+      </RNText>
     </View>
   );
 }
@@ -81,7 +81,7 @@ function App(): JSX.Element {
           }}>
           <Section title="App Name">{APP_NAME}</Section>
           <Section title="Text component">
-            <CustomText
+            <Text
               title={'Text compontent'}
               style={{
                 fontSize: 14,

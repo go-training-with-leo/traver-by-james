@@ -24,7 +24,7 @@ interface ITextProps extends TextProps {
   title: string;
 }
 
-const Text = (props: ITextProps) => {
+export const Text = (props: ITextProps) => {
   const { fontWeight = '300', fontStyle } = StyleSheet.flatten(
     props.style || {},
   );
@@ -39,4 +39,4 @@ const Text = (props: ITextProps) => {
   );
 };
 
-export default Text;
+
