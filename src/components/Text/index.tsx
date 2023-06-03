@@ -39,4 +39,3 @@ export const Text = (props: ITextProps) => {
   );
 };
 
-
