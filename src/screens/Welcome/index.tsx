@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import { ImageBackground, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 import {
   Footer,
@@ -10,12 +11,14 @@ import {
   useMergeState,
 } from '@/components';
 import { useTranslation } from '@/config/i18n';
+import { WelcomeProgressBar } from '@/utils/enums';
 import ProgressBar from './component/ProgressBar';
 import style from './style';
-import { WelcomeProgressBar } from '@/utils/enums';
+
 
 export const Welcome = () => {
   const { t } = useTranslation('welcome');
+  const navigation = useNavigation()
 
   const [state, setState] = useMergeState({
     currentStep: 1,
@@ -23,7 +26,7 @@ export const Welcome = () => {
     screenName: ['firstScreen', 'secondScreen', 'thirdScreen'],
   });
 
-  const renderProgressBar =() => {
+  const renderProgressBar = () => {
     let progressBar:ReactElement[]=[]
     for (let i = 1; i <= state.total; i++) {
       if (i === state.currentStep) {
@@ -38,6 +41,15 @@ export const Welcome = () => {
     }
     return progressBar;
   }
+
+  const onPress = useCallback(()=>{
+      if (state.currentStep + 1 <= state.total) {
+        setState({
+          currentStep: state.currentStep + 1,
+        });
+      }
+      else navigation.navigate("Login")
+  },[state.currentStep])
 
   return (
     <ImageBackground
@@ -64,11 +76,7 @@ export const Welcome = () => {
         <Footer>
           <Button
             title={t('button.title')}
-            onPress={() =>
-              setState({
-                currentStep: state.currentStep + 1,
-              })
-            }
+            onPress={onPress}
           />
         </Footer>
       </LayoutContent>
