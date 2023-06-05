@@ -8,10 +8,11 @@
 import { Welcome } from '@/screens';
 import React from 'react';
 import '@/config/i18n'
+import Navigator from '@/navigators';
 
 function App(): JSX.Element {
   return (
-    <Welcome />
+    <Navigator />
   );
 }
 export default App;

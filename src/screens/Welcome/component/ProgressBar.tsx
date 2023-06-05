@@ -6,6 +6,7 @@ import { colors } from '@/utils/theme';
 
 interface IProgressBar {
   status: WelcomeProgressBar ;
+  key?: React.Key
 }
 
 const ProgressBar = ({ status }:IProgressBar) => {
