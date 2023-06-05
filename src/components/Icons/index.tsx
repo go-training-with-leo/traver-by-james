@@ -3,6 +3,9 @@ import WhiteLogo from '@/assets/icons/logo_white.svg';
 import BlackLogo from '@/assets/icons/logo_black.svg';
 import EyeSlash from '@/assets/icons/eye_slash.svg';
 import Eye from '@/assets/icons/eye.svg'
+import Instagram from '@/assets/icons/instagram.svg';
+import Facebook from '@/assets/icons/facebook.svg';
+import Google from '@/assets/icons/google.svg';
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -12,7 +15,10 @@ export const Icons = (props: IIconsProps) => {
     whiteLogo: <WhiteLogo {...svgProps} />,
     blackLogo: <BlackLogo {...svgProps} />,
     eyeSlash: <EyeSlash {...svgProps} />,
-    eye: <Eye {...svgProps} />
+    eye: <Eye {...svgProps} />,
+    instagram: <Instagram {...svgProps} />,
+    facebook: <Facebook {...svgProps} />,
+    google: <Google {...svgProps} />
   };
 
   return icons[name];

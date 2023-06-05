@@ -1,7 +1,8 @@
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 
 export interface IButtonProps {
   title: string;
   onPress: () => void;
-  style?: StyleProp<ViewStyle>
+  buttonStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 }

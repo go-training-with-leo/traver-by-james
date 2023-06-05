@@ -55,7 +55,8 @@ const style = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    fontSize: 16
   },
   input: {
     borderColor: colors.input.default,
@@ -64,6 +65,7 @@ const style = StyleSheet.create({
     height: 50,
     width: '100%',
     paddingLeft: 20,
+    fontSize: 16
   },
   icon: {
     position: 'absolute',

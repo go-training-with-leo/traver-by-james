@@ -4,14 +4,14 @@ import { Text } from '../Text';
 import { IButtonProps } from '@/utils/interfaces';
 import { colors } from '@/utils/theme';
 
-export const Button = ({ title, onPress, style }: IButtonProps) => {
+export const Button = ({ title, onPress, buttonStyle, titleStyle }: IButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.container, style]}>
+      style={[styles.container, buttonStyle]}>
       <Text
         title={title}
-        style={styles.title}
+        style={[styles.title, titleStyle]}
       />
     </TouchableOpacity>
   );

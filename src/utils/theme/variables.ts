@@ -18,4 +18,7 @@ export const colors = {
   input: {
     default: 'rgba(186, 186, 186, 1)',
   },
+  icon: {
+   light: 'rgba(232, 232, 232, 1)',
+  },
 };

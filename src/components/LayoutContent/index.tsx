@@ -1,7 +1,6 @@
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import React, { PropsWithChildren } from 'react';
 import { colors } from '@/utils/theme';
-import { ReactElement } from 'react';
 
 const style = StyleSheet.create({
   container: {

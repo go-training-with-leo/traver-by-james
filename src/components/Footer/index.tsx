@@ -14,11 +14,12 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     position: 'absolute',
-    bottom: 30,
+    bottom: 20,
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     width: '100%',
-    height: 50
+    columnGap: 40
   },
 });
 
