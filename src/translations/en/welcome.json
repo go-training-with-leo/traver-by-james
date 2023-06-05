@@ -1,0 +1,17 @@
+{
+    "firstScreen": {
+        "title": "Let's explore the world",
+        "subTitle": "Let's explore the world with us with just a few clicks"
+    },
+    "secondScreen":{
+        "title": "Visit tourist attractions",
+        "subTitle": "Find thousands of tourist destinations ready for you to visit"
+    },
+    "thirdScreen": {
+        "title": "Get ready for next trip",
+        "subTitle": "Find thousands of tourist destinations ready for you to visit"
+    },
+    "button":{
+        "title": "Next"
+    }
+}
