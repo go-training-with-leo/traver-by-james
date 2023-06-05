@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback } from 'react';
 import { ImageBackground, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Footer,
@@ -9,16 +9,16 @@ import {
   Text,
   Button,
   useMergeState,
+  Input,
 } from '@/components';
 import { useTranslation } from '@/config/i18n';
 import { WelcomeProgressBar } from '@/utils/enums';
 import ProgressBar from './component/ProgressBar';
 import style from './style';
 
-
 export const Welcome = () => {
   const { t } = useTranslation('welcome');
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const [state, setState] = useMergeState({
     currentStep: 1,
@@ -27,29 +27,28 @@ export const Welcome = () => {
   });
 
   const renderProgressBar = () => {
-    let progressBar:ReactElement[]=[]
+    let progressBar: ReactElement[] = [];
     for (let i = 1; i <= state.total; i++) {
       if (i === state.currentStep) {
-        progressBar.push(<ProgressBar status={WelcomeProgressBar.CURRENT} />) 
+        progressBar.push(<ProgressBar status={WelcomeProgressBar.CURRENT} />);
       }
       if (i < state.currentStep) {
-        progressBar.push(<ProgressBar status={WelcomeProgressBar.PASSED} />)
+        progressBar.push(<ProgressBar status={WelcomeProgressBar.PASSED} />);
       }
       if (i > state.currentStep) {
-        progressBar.push(<ProgressBar status={WelcomeProgressBar.FUTURE} />)
+        progressBar.push(<ProgressBar status={WelcomeProgressBar.FUTURE} />);
       }
     }
     return progressBar;
-  }
+  };
 
-  const onPress = useCallback(()=>{
-      if (state.currentStep + 1 <= state.total) {
-        setState({
-          currentStep: state.currentStep + 1,
-        });
-      }
-      else navigation.navigate("Login")
-  },[state.currentStep])
+  const onPress = useCallback(() => {
+    if (state.currentStep + 1 <= state.total) {
+      setState({
+        currentStep: state.currentStep + 1,
+      });
+    } else navigation.navigate('Login');
+  }, [state.currentStep]);
 
   return (
     <ImageBackground
@@ -58,7 +57,7 @@ export const Welcome = () => {
       }}
       resizeMode="cover"
       style={style.root}>
-      <LayoutContent>
+      <LayoutContent isTransparent={true}>
         <Icons name="whiteLogo" height={20} style={style.icon} />
         <Text
           title={t(`${state.screenName[state.currentStep - 1]}.title`)}
@@ -68,16 +67,9 @@ export const Welcome = () => {
           title={t(`${state.screenName[state.currentStep - 1]}.subTitle`)}
           style={style.subTitle}
         />
-        <View style={style.progressBar}>
-          {
-            renderProgressBar()
-          }
-        </View>
+        <View style={style.progressBar}>{renderProgressBar()}</View>
         <Footer>
-          <Button
-            title={t('button.title')}
-            onPress={onPress}
-          />
+          <Button title={t('button.title')} onPress={onPress} />
         </Footer>
       </LayoutContent>
     </ImageBackground>

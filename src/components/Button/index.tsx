@@ -4,24 +4,24 @@ import { Text } from '../Text';
 import { IButtonProps } from '@/utils/interfaces';
 import { colors } from '@/utils/theme';
 
-export const Button = ({ title, onPress }: IButtonProps) => {
+export const Button = ({ title, onPress, style }: IButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={style.container}>
+      style={[styles.container, style]}>
       <Text
         title={title}
-        style={style.title}
+        style={styles.title}
       />
     </TouchableOpacity>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 50,
     width: '100%',
-    borderRadius: 10,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.button.default,
