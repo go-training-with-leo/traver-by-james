@@ -1,12 +1,12 @@
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import React, { PropsWithChildren } from 'react';
-
+import { colors } from '@/utils/theme';
 
 const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   children: {
     flex: 1,
@@ -15,14 +15,23 @@ const style = StyleSheet.create({
   },
 });
 
-export const LayoutContent = ({ children }: PropsWithChildren) => {
+interface LayoutContentProps {
+  isTransparent?: boolean;
+}
+
+export const LayoutContent = ({
+  children,
+  isTransparent = false,
+}: PropsWithChildren<LayoutContentProps>) => {
   return (
     <SafeAreaView
-      style={style.container}>
-      <View style={style.children}>
-        {children}
-      </View>
+      style={[
+        style.container,
+        !isTransparent && {
+          backgroundColor: colors.background.default,
+        },
+      ]}>
+      <View style={style.children}>{children}</View>
     </SafeAreaView>
   );
 };
-

@@ -3,23 +3,22 @@ import { View } from 'react-native';
 import { WelcomeProgressBar } from '@/utils/enums';
 import { colors } from '@/utils/theme';
 
-
 interface IProgressBar {
-  status: WelcomeProgressBar ;
-  key?: React.Key
+  status: WelcomeProgressBar;
+  key?: React.Key;
 }
 
-const ProgressBar = ({ status }:IProgressBar) => {
-  const width = useMemo(()=>{
-   switch (status) {
-     case WelcomeProgressBar.PASSED:
-       return '100%';
-     case WelcomeProgressBar.CURRENT:
-       return '50%';
-     case WelcomeProgressBar.FUTURE:
-       return '0%';
-   }
-  },[status])
+const ProgressBar = ({ status }: IProgressBar) => {
+  const width = useMemo(() => {
+    switch (status) {
+      case WelcomeProgressBar.PASSED:
+        return '100%';
+      case WelcomeProgressBar.CURRENT:
+        return '50%';
+      case WelcomeProgressBar.FUTURE:
+        return '0%';
+    }
+  }, [status]);
 
   return (
     <View
@@ -43,6 +42,5 @@ const ProgressBar = ({ status }:IProgressBar) => {
     </View>
   );
 };
-
 
 export default ProgressBar;
