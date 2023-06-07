@@ -12,7 +12,7 @@ export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => 
     showValue: type === 'password' ? false : true,
     isFocused: false,
   });
-
+  console.log(state);
   const handleChangeText = (text: string) => {
     setState({ value: text });
     onChangeText(text)
@@ -21,6 +21,10 @@ export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => 
   const changeVisibleValue = () => {
     setState({ showValue: !state.showValue });
   };
+
+  const handleFocus=() => setState({isFocused: true})
+
+  const handleBlur = () => setState({isFocused: false})
 
   return (
     <View style={style.root}>
@@ -34,6 +38,8 @@ export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => 
           onChangeText={handleChangeText}
           style={[style.input, state.isFocused && style.inputFocused]}
           secureTextEntry={!state.showValue}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
         />
         {type === 'password' && (
           <TouchableOpacity style={style.icon} onPress={changeVisibleValue}>
