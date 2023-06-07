@@ -1,30 +1,33 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import {
-  LayoutContent,
+  WrapperContent,
   Input,
   Button,
   CheckBox,
   Icons,
   Footer,
+  KeyboardView,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 import { style } from './style';
+import { useNavigation } from '@react-navigation/native';
 
 export const Login = () => {
   const { t } = useTranslation('auth');
+  const navigation = useNavigation();
   return (
-    <LayoutContent>
+    <WrapperContent style={style.content} canBack={false}>
       <View style={{ alignItems: 'center' }}>
         <Icons name="blackLogo" height={40} style={style.logo} />
       </View>
-      <Input label={t('input.email')} />
-      <Input label={t('input.password')} type="password" />
+      <Input label={t('input.email.label')} />
+      <Input label={t('input.password.label')} type="password" />
       <View style={style.option}>
         <CheckBox />
         <Button
           title={t('button.forgotPassword')}
-          onPress={() => null}
+          onPress={() => navigation.navigate('VerifyEmail')}
           buttonStyle={style.buttonContainer}
           titleStyle={style.buttonTitle}
         />
@@ -46,6 +49,6 @@ export const Login = () => {
           <Icons name="facebook" height={30} />
         </TouchableOpacity>
       </Footer>
-    </LayoutContent>
+    </WrapperContent>
   );
 };

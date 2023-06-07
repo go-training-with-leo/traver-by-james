@@ -6,25 +6,33 @@ import { Text } from '../Text';
 import { Icons } from '../Icons';
 import { IInputProps } from '@/utils/interfaces';
 
-export const Input = ({ label, type = 'normal' }: IInputProps) => {
+export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => {
   const [state, setState] = useMergeState({
     value: '',
     showValue: type === 'password' ? false : true,
+    isFocused: false,
   });
 
-  const handleChangeText = (value: string) => setState({ value });
+  const handleChangeText = (text: string) => {
+    setState({ value: text });
+    onChangeText(text)
+  };
 
-  const changeVisibleValue = () =>{
-    setState({showValue: !state.showValue})
-  }
+  const changeVisibleValue = () => {
+    setState({ showValue: !state.showValue });
+  };
+
   return (
     <View style={style.root}>
-      <Text title={label} style={style.label} />
+      <Text
+        title={label}
+        style={[style.label, state.isFocused && style.labelFocused]}
+      />
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <TextInput
           value={state.value}
           onChangeText={handleChangeText}
-          style={style.input}
+          style={[style.input, state.isFocused && style.inputFocused]}
           secureTextEntry={!state.showValue}
         />
         {type === 'password' && (
@@ -45,6 +53,10 @@ const style = StyleSheet.create({
   root: {
     marginTop: 30,
   },
+  inputContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   label: {
     fontWeight: '200',
     position: 'absolute',
@@ -56,7 +68,10 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 10,
-    fontSize: 16
+    fontSize: 16,
+  },
+  labelFocused: {
+    color: colors.input.focused,
   },
   input: {
     borderColor: colors.input.default,
@@ -65,7 +80,10 @@ const style = StyleSheet.create({
     height: 50,
     width: '100%',
     paddingLeft: 20,
-    fontSize: 16
+    fontSize: 16,
+  },
+  inputFocused: {
+    borderColor: colors.input.focused,
   },
   icon: {
     position: 'absolute',
