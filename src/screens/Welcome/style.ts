@@ -5,6 +5,9 @@ const style = StyleSheet.create({
   root: {
     flex: 1,
   },
+  content:{
+    justifyContent: 'center',
+  },
   title: {
     fontSize: 40,
     color: colors.textPrimary.light,

@@ -6,3 +6,8 @@ export interface IButtonProps {
   buttonStyle?: StyleProp<ViewStyle>;
   titleStyle?: StyleProp<TextStyle>;
 }
+
+export interface IBackButtonProps {
+  onPress: () => void;
+  style?: StyleProp<ViewStyle>
+}

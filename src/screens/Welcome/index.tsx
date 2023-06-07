@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Footer,
   Icons,
-  LayoutContent,
+  WrapperContent,
   Text,
   Button,
   useMergeState,
@@ -57,7 +57,7 @@ export const Welcome = () => {
       }}
       resizeMode="cover"
       style={style.root}>
-      <LayoutContent isTransparent={true}>
+      <WrapperContent isTransparent={true} style={style.content} canBack={false}>
         <Icons name="whiteLogo" height={20} style={style.icon} />
         <Text
           title={t(`${state.screenName[state.currentStep - 1]}.title`)}
@@ -71,7 +71,7 @@ export const Welcome = () => {
         <Footer>
           <Button title={t('button.title')} onPress={onPress} />
         </Footer>
-      </LayoutContent>
+      </WrapperContent>
     </ImageBackground>
   );
 };

@@ -1,8 +1,9 @@
-import { colors } from "@/utils/theme";
-import { StyleSheet } from "react-native";
+import { colors } from '@/utils/theme';
+import { StyleSheet } from 'react-native';
 
 export const style = StyleSheet.create({
   logo: { marginBottom: '20%' },
+  content: { justifyContent: 'center' },
   buttonContainer: {
     backgroundColor: colors.background.default,
     alignItems: 'flex-end',

@@ -6,6 +6,7 @@ import Eye from '@/assets/icons/eye.svg'
 import Instagram from '@/assets/icons/instagram.svg';
 import Facebook from '@/assets/icons/facebook.svg';
 import Google from '@/assets/icons/google.svg';
+import ArrowBack from '@/assets/icons/arrow_back.svg';
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -18,7 +19,8 @@ export const Icons = (props: IIconsProps) => {
     eye: <Eye {...svgProps} />,
     instagram: <Instagram {...svgProps} />,
     facebook: <Facebook {...svgProps} />,
-    google: <Google {...svgProps} />
+    google: <Google {...svgProps} />,
+    arrowBack: <ArrowBack {...svgProps} />
   };
 
   return icons[name];

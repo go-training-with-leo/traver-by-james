@@ -1,4 +1,4 @@
-export * from './LayoutContent';
+export * from './Layout';
 export * from './Hooks';
 export * from './Footer';
 export * from './Text';
