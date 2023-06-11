@@ -6,43 +6,58 @@ import { Text } from '../Text';
 import { Icons } from '../Icons';
 import { IInputProps } from '@/utils/interfaces';
 
-export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => {
+export const Input = ({
+  label,
+  type = 'normal',
+  onChangeText,
+  textAlign,
+  name,
+}: IInputProps) => {
   const [state, setState] = useMergeState({
     value: '',
     showValue: type === 'password' ? false : true,
     isFocused: false,
   });
-  console.log(state);
+
   const handleChangeText = (text: string) => {
     setState({ value: text });
-    onChangeText(text)
+    onChangeText && onChangeText({ name, text });
   };
 
   const changeVisibleValue = () => {
     setState({ showValue: !state.showValue });
   };
 
-  const handleFocus=() => setState({isFocused: true})
+  const handleFocus = () => setState({ isFocused: true });
 
-  const handleBlur = () => setState({isFocused: false})
+  const handleBlur = () => setState({ isFocused: false });
 
   return (
-    <View style={style.root}>
-      <Text
-        title={label}
-        style={[style.label, state.isFocused && style.labelFocused]}
-      />
+    <View style={styles.root}>
+      {label && (
+        <Text
+          title={label}
+          style={[styles.label, state.isFocused && styles.labelFocused]}
+        />
+      )}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <TextInput
+          textAlign={textAlign}
           value={state.value}
           onChangeText={handleChangeText}
-          style={[style.input, state.isFocused && style.inputFocused]}
+          style={[
+            styles.input,
+            state.isFocused && styles.inputFocused,
+            textAlign !== 'center' && { paddingLeft: 20 },
+          ]}
           secureTextEntry={!state.showValue}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          keyboardType="numeric"
+          {...(type === 'code' && { maxLength: 1 })}
         />
         {type === 'password' && (
-          <TouchableOpacity style={style.icon} onPress={changeVisibleValue}>
+          <TouchableOpacity style={styles.icon} onPress={changeVisibleValue}>
             {state.showValue ? (
               <Icons name="eyeSlash" height={25} />
             ) : (
@@ -55,9 +70,10 @@ export const Input = ({ label, type = 'normal', onChangeText }: IInputProps) => 
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   root: {
     marginTop: 30,
+    width: '100%',
   },
   inputContainer: {
     alignItems: 'center',
@@ -85,7 +101,6 @@ const style = StyleSheet.create({
     borderRadius: 20,
     height: 50,
     width: '100%',
-    paddingLeft: 20,
     fontSize: 16,
   },
   inputFocused: {

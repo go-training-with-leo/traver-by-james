@@ -6,3 +6,5 @@ export * from './Button';
 export * from './Icons';
 export * from './Input';
 export * from './CheckBox';
+export * from './Switch';
+export * from './Image';

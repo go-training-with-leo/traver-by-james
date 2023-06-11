@@ -23,12 +23,11 @@ export const NewPassword = () => {
     hasErrorPassword: false,
     hasErrorRepeat: false,
   });
-  console.log('🚀 ~ file: NewPassword.tsx:21 ~ NewPassword ~ state:', state);
 
-  const handlePasswordChange = (text: string) => {
+  const handlePasswordChange = ({text}) => {
     setState({ password: text, hasErrorPassword: false });
   };
-  const handleRepeatPassChange = (text: string) => {
+  const handleRepeatPassChange = ({text}) => {
     setState({ repeatPassword: text, hasErrorRepeat: false });
     1;
   };
