@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import {
   WrapperContent,
@@ -8,6 +8,7 @@ import {
   Icons,
   Footer,
   KeyboardView,
+  Switch,
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 import { style } from './style';
@@ -16,6 +17,11 @@ import { useNavigation } from '@react-navigation/native';
 export const Login = () => {
   const { t } = useTranslation('auth');
   const navigation = useNavigation();
+
+  const createAccount = useCallback(() => {
+    navigation.navigate('RegisterName');
+  }, [navigation]);
+
   return (
     <WrapperContent style={style.content} canBack={false}>
       <View style={{ alignItems: 'center' }}>
@@ -34,11 +40,12 @@ export const Login = () => {
       </View>
       <Button
         title={t('button.register')}
-        onPress={() => null}
+        onPress={createAccount}
         buttonStyle={style.registerButton}
       />
+      {/* <Switch /> */}
       <Button title={t('button.login')} onPress={() => null} />
-      <Footer>
+      <Footer style={style.footer}>
         <TouchableOpacity style={style.socialContainer}>
           <Icons name="instagram" height={30} />
         </TouchableOpacity>

@@ -35,4 +35,9 @@ export const style = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 20,
   },
+  footer: { 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    columnGap: 20 
+  },
 });

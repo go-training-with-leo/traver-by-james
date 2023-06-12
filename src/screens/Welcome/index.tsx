@@ -57,8 +57,12 @@ export const Welcome = () => {
       }}
       resizeMode="cover"
       style={style.root}>
-      <WrapperContent isTransparent={true} style={style.content} canBack={false}>
+      <WrapperContent
+        isTransparent={true}
+        style={style.content}
+        canBack={false}>
         <Icons name="whiteLogo" height={20} style={style.icon} />
+        <Icons name="beach" height={40} width={40} viewBox='10 10 20 50'   />
         <Text
           title={t(`${state.screenName[state.currentStep - 1]}.title`)}
           style={style.title}

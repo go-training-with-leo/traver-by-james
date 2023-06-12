@@ -22,4 +22,5 @@ export const colors = {
   icon: {
     light: 'rgba(232, 232, 232, 1)',
   },
+  success: 'rgba(23, 175, 131, 1)',
 };

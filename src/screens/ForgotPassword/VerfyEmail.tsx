@@ -18,11 +18,11 @@ export const VerifyEmail = () => {
     email: '',
     error: false,
   });
-  console.log('🚀 ~ file: VerfyEmail.tsx:20 ~ VerifyEmail ~ state:', state);
+
   const navigation = useNavigation();
   const { t } = useTranslation('auth');
 
-  const handleInputChange = (text: string) => {
+  const handleInputChange = ({text}) => {
     setState({ email: text, error: false });
   };
 
