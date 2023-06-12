@@ -53,7 +53,7 @@ export const Input = ({
           secureTextEntry={!state.showValue}
           onBlur={handleBlur}
           onFocus={handleFocus}
-          keyboardType="numeric"
+          {...(type === 'code' && { keyboardType: 'numeric' })}
           {...(type === 'code' && { maxLength: 1 })}
         />
         {type === 'password' && (
