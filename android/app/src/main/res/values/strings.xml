@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">traver</string>
+    <string name="facebook_app_id">1117276572603270</string><string name="facebook_client_token">3a50fd8b3b688d4fcd826a5cf0539d88</string>
+
 </resources>

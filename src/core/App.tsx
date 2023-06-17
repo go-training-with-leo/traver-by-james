@@ -9,8 +9,14 @@ import { Welcome } from '@/screens';
 import React from 'react';
 import '@/config/i18n'
 import Navigator from '@/navigators';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+
 
 function App(): JSX.Element {
+  GoogleSignin.configure({
+    webClientId: '',
+  });
   return (
     <Navigator />
   );
