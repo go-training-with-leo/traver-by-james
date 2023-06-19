@@ -8,3 +8,4 @@ export * from './Input';
 export * from './CheckBox';
 export * from './Switch';
 export * from './Image';
+export * from './Loading';

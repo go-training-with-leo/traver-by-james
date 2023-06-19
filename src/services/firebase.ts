@@ -1,104 +1,126 @@
-import { Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { authErrors } from '@/utils/constants';
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 
-interface IAuthViaEmailProps {
-  email: string;
-  password: string;
-}
+import { authErrors } from '@/utils/constants';
+import {
+  IAuthResponse,
+  ILoginWithEmailProps,
+  ISignUpProps,
+} from '@/utils/interfaces';
+import { Alert } from 'react-native';
 
-interface ISaveDocProps<T>{
-  collection: string;
-  data: T
-}
-export const signUpEmailPassword = async ({
-  email,
-  password,
-}: IAuthViaEmailProps): Promise<FirebaseAuthTypes.User | null> => {
+export const signUpEmailPassword = async (props: ISignUpProps) => {
   try {
     const response: FirebaseAuthTypes.UserCredential =
-      await auth().createUserWithEmailAndPassword(email, password);
-    return response.user;
+      await auth().createUserWithEmailAndPassword(props.email, props.password);
+    return {
+      credential: {
+        ...response,
+        email: props.email,
+        lastName: props.lastName,
+        firstName: props.firstName,
+      },
+      error: null,
+    };
   } catch (error) {
-    if (error?.code === authErrors.existedEmail) {
-      Alert.alert('That email address is already in use!');
-    }
-    if (error?.code === authErrors.invalidEmail) {
-      Alert.alert('That email address is invalid!');
-    }
-    if (error?.code === authErrors.weekPassword) {
-      Alert.alert('That password is too weak');
-    }
-    return null;
+    return {
+      credential: null,
+      error: error?.code,
+    };
   }
 };
 
-export const signInEmailPassword= async({email, password}: IAuthViaEmailProps)=>{
-  try{
-    const response = await auth().signInWithEmailAndPassword(email, password)
-    console.log("🚀 ~ file: firebase.ts:43 ~ signInEmailPassword ~ response:", response)
-    return response.user;
+export const signInWithEmail = async ({
+  email,
+  password,
+}: ILoginWithEmailProps): Promise<IAuthResponse> => {
+  try {
+    const credential = await auth().signInWithEmailAndPassword(email, password);
+    return { credential, error: null };
+  } catch (error) {
+    return {
+      credential: null,
+      error: error?.code,
+    };
   }
-  catch(error){
-    console.log("🚀 ~ file: firebase.ts:47 ~ signInEmailPassword ~ error:", error)
-    if(error?.code=== authErrors.userNotFound){
-      Alert.alert("User not found.")
-    }
-    if(error?.code===authErrors.wrongPassword){
-      Alert.alert("That password is not correct.")
-    }
-    return null;
-  }
-}
+};
 
-export const signInWithFacebook =async() =>{
-   try{
+export const signInWithFacebook = async (): Promise<IAuthResponse> => {
+  try {
     const result = await LoginManager.logInWithPermissions([
-     'public_profile',
-     'email',
-   ]);
+      'public_profile',
+      'email',
+    ]);
 
-   if (result.isCancelled) {
-     throw 'User cancelled the login process';
-   }
-   const data = await AccessToken.getCurrentAccessToken();
+    if (result.isCancelled) {
+      return {
+        credential: null,
+        error: authErrors.cancel,
+      };
+    }
+    const data = await AccessToken.getCurrentAccessToken();
 
-   if (!data) {
-     throw 'Something went wrong obtaining access token';
-   }
-   const facebookCredential = auth.FacebookAuthProvider.credential(
-     data.accessToken,
-   );
-   return auth().signInWithCredential(facebookCredential);
-   }
-   catch(error){
-    console.log('error', error)
-   }
-}
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+    return {
+      credential: await auth().signInWithCredential(facebookCredential),
+      error: null,
+    };
+  } catch (error) {
+    return {
+      credential: null,
+      error: error?.code ?? error,
+    };
+  }
+};
 
-export const signInWithGoogle = async() => {
-  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  const { idToken } = await GoogleSignin.signIn();
+export const signInWithGoogle = async (): Promise<IAuthResponse> => {
+  try {
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    const { idToken } = await GoogleSignin.signIn();
 
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-  return auth().signInWithCredential(googleCredential);
-}
+    return {
+      credential: await auth().signInWithCredential(googleCredential),
+      error: null,
+    };
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      return {
+        credential: null,
+        error: authErrors.cancel,
+      };
+    }
+    return {
+      credential: null,
+      error: error,
+    };
+  }
+};
 
-export const signOut = async() =>{
-  await auth().signOut()
-}
+export const signOut = async () => {
+  await auth().signOut();
+};
 
+export const updatePassword = (email: string) => {
+  return auth().sendPasswordResetEmail(email)
+};
 
 export const saveDoc = async ({ collection, data }) => {
   try {
-    await firestore().collection(collection).add(data) 
+    await firestore().collection(collection).add(data);
   } catch (error) {
-    console.log('Error when add new document', error)
+    console.log('Error when add new document', error);
   }
 };
-
