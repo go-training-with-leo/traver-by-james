@@ -7,6 +7,9 @@ import {
   ProgressFooter,
   Switch,
   FlexView,
+  useAppDispatch,
+  useAppSelector,
+  Loading,
 } from '@/components';
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +18,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/utils/types';
 import { View } from 'react-native';
-import { passwordValidation } from '@/utils/helpers';
+import { handleAuthException, passwordValidation } from '@/utils/helpers';
+import { loadingSelector, signUp } from '@/global/redux';
 
 type RegisterPasswordProps = NativeStackScreenProps<
   RootStackParamList,
@@ -26,6 +30,9 @@ export const RegisterPassword = () => {
   const { t } = useTranslation('auth');
   const navigation = useNavigation();
   const route = useRoute<RegisterPasswordProps>();
+  const dispatch = useAppDispatch()
+  const auth = useAppSelector(state=> state.auth)
+  const loading = loadingSelector()
 
   const [state, setState] = useMergeState({
     password: '',
@@ -33,9 +40,7 @@ export const RegisterPassword = () => {
     switchValue: false,
   });
 
-  const handleSubmit = () => {
-    isPasswordValid ? navigation.navigate('VerifyOTP') : setState({error: true})
-  };
+  
 
   const isPasswordValid = useMemo(() => {
     if (state.switchValue && !passwordValidation(state.password)) {
@@ -43,6 +48,23 @@ export const RegisterPassword = () => {
     }
     return true;
   }, [state.password, state.switchValue]);
+
+  const handleSubmit = () => {
+    if (isPasswordValid) {
+      dispatch(
+        signUp({
+          email: route.params.email,
+          firstName: route.params.firstName,
+          lastName: route.params.lastName,
+          password: state.password,
+          onSuccess: () => navigation.navigate('VerifyOTP'),
+          onFailure: () => {
+            console.log('error', auth.error)
+            auth.error && handleAuthException(auth.error, t);}
+        }),
+      );
+    } else setState({ error: true });
+  }
 
   const handlePasswordChange = useCallback(
     ({ text }) => setState({ password: text, error: false }),
@@ -55,35 +77,45 @@ export const RegisterPassword = () => {
     });
 
   return (
-    <KeyboardView>
-      <WrapperContent>
-        <Text
-          title={t('screen.registerPassword.subTitle')}
-          style={style.subTitle}
-        />
-        <Text title={t('screen.registerPassword.title')} style={style.title} />
-        <Input
-          label={t('input.password.label')}
-          onChangeText={handlePasswordChange}
-        />
-        {state.error && (
-          <Text title={t('input.password.error')} style={style.error} />
-        )}
-        <FlexView>
-          <Text
-            title={t('screen.registerPassword.note')}
-            style={style.switchText}
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <KeyboardView>
+          <WrapperContent>
+            <Text
+              title={t('screen.registerPassword.subTitle')}
+              style={style.subTitle}
+            />
+            <Text
+              title={t('screen.registerPassword.title')}
+              style={style.title}
+            />
+            <Input
+              label={t('input.password.label')}
+              onChangeText={handlePasswordChange}
+              type="password"
+            />
+            {state.error && (
+              <Text title={t('input.password.error')} style={style.error} />
+            )}
+            <FlexView>
+              <Text
+                title={t('screen.registerPassword.note')}
+                style={style.switchText}
+              />
+              <View>
+                <Switch value={state.switchValue} onChange={toggleSwitch} />
+              </View>
+            </FlexView>
+          </WrapperContent>
+          <ProgressFooter
+            percent={75}
+            handleSubmit={handleSubmit}
+            title={t('button.verify')}
           />
-          <View>
-            <Switch value={state.switchValue} onChange={toggleSwitch} />
-          </View>
-        </FlexView>
-      </WrapperContent>
-      <ProgressFooter
-        percent={75}
-        handleSubmit={handleSubmit}
-        title={t('button.verify')}
-      />
-    </KeyboardView>
+        </KeyboardView>
+      )}
+    </>
   );
 };

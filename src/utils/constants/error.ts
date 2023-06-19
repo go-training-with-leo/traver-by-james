@@ -4,4 +4,5 @@ export const authErrors = {
   weekPassword: 'auth/weak-password',
   wrongPassword: 'auth/wrong-password',
   userNotFound: 'auth/user-not-found',
+  cancel: 'User cancelled the login',
 };
