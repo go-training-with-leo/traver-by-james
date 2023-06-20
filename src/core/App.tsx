@@ -11,8 +11,11 @@ import '@/config/i18n';
 import Navigator from '@/navigators';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider } from 'react-redux';
-import store from './store';
+import {store, persistor} from './store';
 import { Google_Client_Id } from '@/config';
+
+import { PersistGate } from 'redux-persist/integration/react';
+
 import * as Sentry from '@sentry/react-native';
 
 Sentry.init({
@@ -20,13 +23,16 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
+
 function App(): JSX.Element {
   GoogleSignin.configure({
     webClientId: Google_Client_Id,
   });
   return (
     <Provider store={store}>
-      <Navigator />
+      <PersistGate loading={null} persistor={persistor}>
+        <Navigator />
+      </PersistGate>
     </Provider>
   );
 }
