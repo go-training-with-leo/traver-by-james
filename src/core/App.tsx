@@ -23,7 +23,6 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-
 function App(): JSX.Element {
   GoogleSignin.configure({
     webClientId: Google_Client_Id,
