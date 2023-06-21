@@ -22,10 +22,10 @@ export const RegisterName = () => {
     firstName: '',
     lastName: '',
   });
-
-  const handleSubmit = useCallback(() => {
+  
+  const handleSubmit = () => {
     navigation.navigate('RegisterEmail', { ...state });
-  }, [navigation]);
+  };
 
   const handleFirstNameChange = useCallback(
     ({text}) => setState({ firstName: text }),

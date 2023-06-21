@@ -28,6 +28,7 @@ import {
   forgotPasswordRequest,
   forgotPasswordSuccess,
   forgotPasswordFailure,
+  signUpSuccess,
 } from './actions';
 import { Alert } from 'react-native';
 import { logout } from './actions';
@@ -72,7 +73,7 @@ const onSignUpSuccess = (
   credential.additionalUserInfo.isNewUser &&
     saveDoc({ collection: COLLECTION.USER, data: user });
   onSuccess();
-  return dispatch(loginSuccess(user));
+  return dispatch(signUpSuccess());
 };
 
 const onSignUpFailure = (

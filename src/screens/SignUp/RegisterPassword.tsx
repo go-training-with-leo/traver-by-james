@@ -59,7 +59,6 @@ export const RegisterPassword = () => {
           password: state.password,
           onSuccess: () => navigation.navigate('VerifyOTP'),
           onFailure: () => {
-            console.log('error', auth.error)
             auth.error && handleAuthException(auth.error, t);}
         }),
       );
