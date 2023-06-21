@@ -7,6 +7,7 @@ import { TAuthAction } from './actions';
 const initialState: IAuthState = {
   user: null,
   error: '',
+  isLoggedIn: true
 };
 
 export const authReducer = (
@@ -19,6 +20,7 @@ export const authReducer = (
         ...state,
         user: action.payload,
         error: '',
+        isLoggedIn: true
       };
     case actionTypes.SIGN_UP_SUCCESS:
     case actionTypes.FORGOT_PASSWORD_SUCCESS:
@@ -33,6 +35,11 @@ export const authReducer = (
         ...state,
         error: action.payload,
       };
+    case actionTypes.LOGOUT:
+      return{
+        ...state,
+        isLoggedIn: false
+      }
     default:
       return state;
   }
