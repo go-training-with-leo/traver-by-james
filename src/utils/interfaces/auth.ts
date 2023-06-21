@@ -18,7 +18,7 @@ export interface ISignUpProps extends ICallBackProps{
   password: string,
   firstName: string;
   lastName: string;
-} ;
+};
 
 export interface IAuthResponse {
   credential: FirebaseAuthTypes.UserCredential | null | FirebaseAuthTypes.UserCredential & ISignUpProps;

@@ -1,6 +1,7 @@
 export const colors = {
   background: {
     default: 'rgba(255, 255, 255, 1)',
+    black: 'rgba(12, 5, 7, 1)',
   },
   button: {
     default: 'rgba(252, 210, 64, 1)',

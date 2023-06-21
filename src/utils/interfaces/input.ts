@@ -6,8 +6,8 @@ export interface IInputChangeProps {
 }
 export interface IInputProps {
   label: string;
-  name?: "email"|"password"|"repeat";
-  type?: 'password' | 'normal' | 'code';
+  name?: 'email' | 'password' | 'repeat';
+  type?: 'password' | 'normal' | 'code' | 'email';
   onChangeText?: (props: IInputChangeProps) => void;
   textAlign?: 'center' | 'left' | 'right';
 }

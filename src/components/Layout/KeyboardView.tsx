@@ -6,7 +6,7 @@ export const KeyboardView = ({children}: PropsWithChildren) => {
   return (
     <KeyboardAvoidingView
       style={style.root}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={'height'}
       keyboardVerticalOffset={0}>
         {children}
       </KeyboardAvoidingView>

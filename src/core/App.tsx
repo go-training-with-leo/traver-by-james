@@ -13,7 +13,6 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider } from 'react-redux';
 import {store, persistor} from './store';
 import { Google_Client_Id } from '@/config';
-
 import { PersistGate } from 'redux-persist/integration/react';
 
 import * as Sentry from '@sentry/react-native';

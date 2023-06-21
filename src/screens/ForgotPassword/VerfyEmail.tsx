@@ -73,6 +73,7 @@ export const VerifyEmail = () => {
           <Input
             label={t('input.email.label')}
             onChangeText={handleInputChange}
+            type='email'
           />
           {state.error && (
             <Text title={t('input.email.error')} style={style.error} />

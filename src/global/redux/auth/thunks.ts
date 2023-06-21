@@ -9,6 +9,7 @@ import {
   signInWithGoogle,
   signUpEmailPassword,
   updatePassword,
+  signOut,
 } from '@/services';
 import type {
   ICallBackProps,
@@ -29,6 +30,7 @@ import {
   forgotPasswordFailure,
 } from './actions';
 import { Alert } from 'react-native';
+import { logout } from './actions';
 
 const onLoginSuccess = (
   credential: FirebaseAuthTypes.UserCredential,
@@ -151,3 +153,8 @@ export const forgotPassword =
         onFailure()
       });
   };
+
+export const logOut = () => (dispatch: Dispatch) => {
+  signOut()
+  dispatch(logout())
+}

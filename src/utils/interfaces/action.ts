@@ -5,6 +5,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -48,5 +49,9 @@ export interface IForgotPasswordSuccess {
 export interface IForgotPasswordFailure {
   type: typeof FORGOT_PASSWORD_FAILURE;
   payload: string;
+}
+
+export interface ILogout{
+  type: typeof LOGOUT;
 }
 

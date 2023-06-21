@@ -5,6 +5,7 @@ import {
   ILoginFailure,
   ILoginRequest,
   ILoginSuccess,
+  ILogout,
   ISignUpFailure,
   ISignUpRequest,
   ISignUpSuccess,
@@ -21,7 +22,8 @@ export type TAuthAction =
   | ISignUpFailure
   |IForgotPasswordRequest
   |IForgotPasswordSuccess
-  |IForgotPasswordFailure;
+  |IForgotPasswordFailure
+  |ILogout;
 
 export const loginRequest = (): ILoginRequest => ({
   type: actionTypes.LOGIN_REQUEST,
@@ -62,3 +64,7 @@ export const forgotPasswordFailure = (error: string): IForgotPasswordFailure => 
   type: actionTypes.FORGOT_PASSWORD_FAILURE,
   payload: error
 });
+
+export const logout = (): ILogout =>({
+  type: actionTypes.LOGOUT
+})

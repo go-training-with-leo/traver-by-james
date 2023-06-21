@@ -45,6 +45,7 @@ export const Input = ({
           textAlign={textAlign}
           value={state.value}
           onChangeText={handleChangeText}
+          autoCapitalize='none'
           style={[
             styles.input,
             state.isFocused && styles.inputFocused,
@@ -53,8 +54,8 @@ export const Input = ({
           secureTextEntry={!state.showValue}
           onBlur={handleBlur}
           onFocus={handleFocus}
-          {...(type === 'code' && { keyboardType: 'numeric' })}
-          {...(type === 'code' && { maxLength: 1 })}
+          {...(type === 'code' && { keyboardType: 'numeric', maxLength: 1 })}
+          {...(type === 'email' && { keyboardType: 'email-address' })}
         />
         {type === 'password' && (
           <TouchableOpacity style={styles.icon} onPress={changeVisibleValue}>

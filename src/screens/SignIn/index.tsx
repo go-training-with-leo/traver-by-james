@@ -44,12 +44,16 @@ export const Login = () => {
     navigation.navigate('RegisterName');
   }, [navigation]);
 
-  const signIn = useCallback(
+  const navigateHome = useCallback(()=>{
+    navigation.navigate("Main");
+  },[navigation])
+
+  const signIn = 
     async (method: SignInMethod) => {
       switch (method) {
         case SignInMethod.FB:
           dispatch(loginWithFacebook({
-            onSuccess: () => Alert.alert("Success"),
+            onSuccess: navigateHome,
             onFailure: ()=> auth.error&& handleAuthException(auth.error,t)
           }));
           break;
@@ -74,9 +78,7 @@ export const Login = () => {
         default:
           break;
       }
-    },
-    [dispatch, state],
-  );
+    }
 
   const handleChangeInput = ({ name, text }) => {
     setState({ [name]: text });
