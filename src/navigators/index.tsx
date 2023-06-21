@@ -10,7 +10,6 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigator = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  console.log('🚀 ~ file: index.tsx:15 ~ Navigator ~ isLoggedIn:', isLoggedIn);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

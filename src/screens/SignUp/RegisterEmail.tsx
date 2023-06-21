@@ -25,7 +25,6 @@ export const RegisterEmail = () => {
   const { t } = useTranslation('auth');
   const navigation = useNavigation();
   const route = useRoute<RegisterEmailProps>()
-
   const [state, setState] = useMergeState({
     email: '',
     error: false
@@ -34,8 +33,7 @@ export const RegisterEmail = () => {
   const handleSubmit = () => {
     if(emailValidation(state.email)){
       return navigation.navigate('RegisterPassword', {
-        firstName: route.params.firstName,
-        lastName: route.params.lastName,
+        ...route.params,
         email: state.email,
       });
     }

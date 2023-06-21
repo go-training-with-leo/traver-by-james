@@ -15,7 +15,7 @@ export const VerifyOTP = () => {
     thirdNumber: '',
     lastNumber: ''
   })
-  console.log(state)
+
   const handleInputChange = ({name, text}: IInputChangeProps)=>{
     setState({
       [name]: text

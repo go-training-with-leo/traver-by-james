@@ -3,7 +3,6 @@ import React from 'react';
 import { View, Switch as RNSwitch, StyleSheet } from 'react-native';
 
 export const Switch = ({value, onChange}:ISwitchProps) => {
-  console.log("🚀 ~ file: index.tsx:6 ~ Switch ~ value:", value)
   return (
     <View style={styles.container}>
       <RNSwitch
