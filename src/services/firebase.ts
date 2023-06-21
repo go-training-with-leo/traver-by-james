@@ -13,7 +13,9 @@ import {
   ILoginWithEmailProps,
   ISignUpProps,
 } from '@/utils/interfaces';
-import { Alert } from 'react-native';
+
+auth().useEmulator('http://localhost:9099');
+firestore().useEmulator('localhost', 8080);
 
 export const signUpEmailPassword = async (props: ISignUpProps) => {
   try {
