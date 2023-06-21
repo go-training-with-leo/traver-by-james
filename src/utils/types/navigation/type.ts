@@ -1,6 +1,7 @@
-import { FavoritePlace } from './../../../screens/SignUp/FavoritePlace';
 type RootStackParamList = {
   Welcome: undefined;
+  Auth: undefined;
+  Main: undefined;
   Login: undefined;
   VerifyEmail: undefined;
   NewPassword: { email: string };
@@ -17,6 +18,11 @@ type RootStackParamList = {
   VerifyOTP: undefined;
   RegisterSuccess: undefined;
   FavoritePlace: undefined;
-};
+  HomeStack: undefined;
+  ProfileStack: undefined;
+  MyTripStack: undefined;
+  WishlistStack: undefined;
+  Home: undefined;
+}
 
 export { RootStackParamList };
