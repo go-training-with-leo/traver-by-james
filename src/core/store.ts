@@ -3,14 +3,8 @@ import reducers from './reducers'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension';
 import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
   persistReducer,
   persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
 } from 'redux-persist';
 import reduxStorage from './storage';
 
