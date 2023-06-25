@@ -35,7 +35,6 @@ const style = StyleSheet.create({
     color: colors.red,
   },
   description: {
-    marginTop: 10,
     color: colors.textSecond.light,
     fontSize: 12,
   },
@@ -43,6 +42,10 @@ const style = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 10,
+  },
+  score: { 
+    color: colors.black, 
+    fontSize: 14,
   },
 });
 

@@ -9,18 +9,21 @@ import style from './style';
 import { colors } from '@/utils/theme';
 import { useAppDispatch, useAppSelector } from '../Hooks';
 import { addFavorite, removeFavorite } from '@/global/redux';
+import Stars from '../Stars';
 
 export const Destination = ({ destination }: IDestinationProps) => {
   const wishlist = useAppSelector(state => state.user.wishlist);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const isFavorited: boolean = useMemo(() => {
     return wishlist.find(item => item.id === destination.id) ? true : false;
   }, [wishlist, destination]);
 
-  const handlePress = () =>{
-    isFavorited ? dispatch(removeFavorite(destination)) : dispatch(addFavorite(destination))
-  }
+  const handlePress = () => {
+    isFavorited
+      ? dispatch(removeFavorite(destination))
+      : dispatch(addFavorite(destination));
+  };
   return (
     <View style={style.container}>
       <FlexView>
@@ -30,6 +33,7 @@ export const Destination = ({ destination }: IDestinationProps) => {
         <View style={style.contentContainer}>
           <Text title={destination.name} style={style.title} />
           <Text title={renderPrice(destination.price)} style={style.price} />
+          <Stars value={destination.reviewScore} />
           <Text
             title={destination.description}
             numberOfLines={2}
@@ -38,11 +42,7 @@ export const Destination = ({ destination }: IDestinationProps) => {
         </View>
       </FlexView>
       <TouchableOpacity style={style.icon} onPress={handlePress}>
-        <Icons
-          name="heart"
-          fill={isFavorited ? colors.red : colors.white}
-          stroke={isFavorited ? colors.red : colors.black }
-        />
+        <Icons name="heart" fill={isFavorited ? colors.red : colors.white} />
       </TouchableOpacity>
     </View>
   );

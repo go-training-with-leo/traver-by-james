@@ -11,3 +11,4 @@ export * from './Image';
 export * from './Loading';
 export * from './SearchBar';
 export * from './Destination';
+export * from './Stars';
