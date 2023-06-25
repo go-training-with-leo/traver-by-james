@@ -1,21 +1,14 @@
-import { View, Text, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native'
+import { KeyboardAvoidingView } from 'react-native'
 import React, { PropsWithChildren } from 'react'
-import { colors } from '@/utils/theme';
+import { default as defaultStyle } from './style';
 
 export const KeyboardView = ({children}: PropsWithChildren) => {
   return (
     <KeyboardAvoidingView
-      style={style.root}
+      style={defaultStyle.keyboardView}
       behavior={'height'}
       keyboardVerticalOffset={0}>
         {children}
       </KeyboardAvoidingView>
   )
 }
-
-const style = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background.default,
-  },
-});

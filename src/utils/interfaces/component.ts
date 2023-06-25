@@ -16,6 +16,10 @@ export interface WrapperContentProps {
   title?: string;
 }
 
+export interface IFlexViewProps{
+  style?: StyleProp<ViewStyle>
+}
+
 export interface IImageProps {
   name: PLACE;
   style: StyleProp<ImageStyle>;
@@ -32,7 +36,6 @@ export interface IIconsProps {
   style?: StyleProp<ViewStyle>;
   fill?: ColorValue;
 }
-
 export interface IButtonProps {
   title: string;
   onPress: () => void;
@@ -50,3 +53,12 @@ export interface IDestinationProps {
   key: React.Key;
 }
 
+export interface IDestinationProps {
+  destination: IDestination;
+  key: React.Key;
+}
+
+export interface IStarsProps {
+  value: number;
+  textColor?: ColorValue;
+}

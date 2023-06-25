@@ -28,4 +28,5 @@ export const colors = {
   white: 'rgba(255, 255, 255, 1)',
   black: 'rgba(12, 5, 7, 1)',
   border: 'rgba(186, 186, 186, 1)',
+  yellow: 'rgba(252, 210, 64, 1)',
 };

@@ -19,6 +19,8 @@ import Profile from '@/assets/icons/profile.svg';
 import ProfileFocused from '@/assets/icons/profile_focused.svg';
 import Calendar from '@/assets/icons/calendar.svg'
 import Search from '@/assets/icons/search.svg';
+import Star from '@/assets/icons/star.svg';
+import StarActive from '@/assets/icons/star_active.svg';
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -45,6 +47,9 @@ export const Icons = (props: IIconsProps) => {
     profileFocused: <ProfileFocused {...svgProps} />,
     calendar: <Calendar {...svgProps} />,
     search: <Search {...svgProps} />,
+    starActive: <StarActive {...svgProps} />,
+    star:<Star {...svgProps} />
+
   };
 
   return icons[name];
