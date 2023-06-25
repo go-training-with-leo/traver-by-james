@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   children: {
     flex: 1,
     width: '90%',
+    marginTop: 20
   },
 });
 
@@ -31,12 +32,12 @@ export const WrapperContent = ({
           backgroundColor: colors.background.default,
         },
       ]}>
-      {canBack && (
+      {/* {canBack && (
         <BackButton
           onPress={() => navigation.goBack()}
           style={{ width: '90%', marginVertical: 20 }}
         />
-      )}
+      )} */}
       <View style={[styles.children, style]}>{children}</View>
     </SafeAreaView>
   );

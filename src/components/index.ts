@@ -9,3 +9,4 @@ export * from './CheckBox';
 export * from './Switch';
 export * from './Image';
 export * from './Loading';
+export * from './SearchBar'
