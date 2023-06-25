@@ -1,4 +1,5 @@
 import {
+  IAddFavorite,
     IBookTripSuccess,
   IForgotPasswordFailure,
   IForgotPasswordRequest,
@@ -7,12 +8,13 @@ import {
   ILoginRequest,
   ILoginSuccess,
   ILogout,
+  IRemoveFavorite,
   ISignUpFailure,
   ISignUpRequest,
   ISignUpSuccess,
 } from '@/utils/interfaces';
 
-type TUserAction = IBookTripSuccess;
+type TUserAction = IBookTripSuccess|IAddFavorite|IRemoveFavorite;
 
 type TAuthAction= ILoginRequest
   | ILoginSuccess

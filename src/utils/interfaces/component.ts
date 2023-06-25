@@ -1,5 +1,6 @@
 import { ColorValue, ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native/types";
 import { PLACE } from "../enums";
+import { IDestination } from "./action";
 
 export interface ISearchBarProps {
   onSearch: (value: string) => void;
@@ -29,6 +30,7 @@ export interface IIconsProps {
   color?: ColorValue;
   title?: string;
   style?: StyleProp<ViewStyle>;
+  fill?: ColorValue;
 }
 
 export interface IButtonProps {
@@ -41,5 +43,10 @@ export interface IButtonProps {
 export interface IBackButtonProps {
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+}
+
+export interface IDestinationProps {
+  destination: IDestination;
+  key: React.Key;
 }
 

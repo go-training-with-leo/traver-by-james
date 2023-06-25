@@ -12,7 +12,7 @@ import {
   useMergeState,
   SearchBar,
 } from '@/components';
-import { price, renderDate } from '@/utils/helpers';
+import { renderPrice, renderDate } from '@/utils/helpers';
 
 import style from './style';
 
@@ -38,7 +38,7 @@ const MyTrip = () => {
           {state.searchTrips.map((trip, index) => (
             <View key={index} style={style.tripContainer}>
               <Text title={trip.name} style={style.tripName} />
-              <Text title={price(trip.price)} style={style.price} />
+              <Text title={renderPrice(trip.price)} style={style.price} />
               <View style={style.dateContainer}>
                 <FlexView>
                   <Icons name="calendar" />

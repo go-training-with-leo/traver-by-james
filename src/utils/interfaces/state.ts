@@ -1,4 +1,4 @@
-import { INotification, ITrip } from "./action";
+import { IDestination, INotification } from "./action";
 import { IUser } from "./auth";
 
 export interface IAuthState {
@@ -13,6 +13,6 @@ export interface IAppState {
 
 export interface IUserState {
   notifications: Array<INotification>;
-  booked: Array<ITrip>;
-  wishlist: Array<ITrip>;
+  booked: Array<IDestination>;
+  wishlist: Array<IDestination>;
 }

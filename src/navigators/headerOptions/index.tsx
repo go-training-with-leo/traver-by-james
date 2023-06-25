@@ -72,7 +72,10 @@ export const tabOption = (tabName: string): BottomTabNavigationOptions => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Icons name={focused ? `${icon}Focused` : icon} />
+        <Icons
+          name={focused ? `${icon}Focused` : icon}
+          stroke={focused ? 'white' : 'black'}
+        />
       </View>
     ),
   };

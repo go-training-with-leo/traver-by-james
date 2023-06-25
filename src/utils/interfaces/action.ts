@@ -1,4 +1,5 @@
 import {
+  ADD_FAVORITE,
   BOOK_TRIP_FAILURE,
   BOOK_TRIP_REQUEST,
   BOOK_TRIP_SUCCESS,
@@ -9,6 +10,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  REMOVE_FAVORITE,
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -77,7 +79,7 @@ export interface INotification {
   markRead: boolean;
 }
 
-export interface ITrip {
+export interface IDestination {
   id: string;
   name: string;
   price: number;
@@ -90,6 +92,16 @@ export interface ITrip {
   gallery: Array<string>;
 }
 
-export interface IBookedTrip extends ITrip{
+export interface ITrip extends IDestination{
   members: number;
+}
+
+export interface IAddFavorite {
+  type: typeof ADD_FAVORITE,
+  payload: IDestination
+}
+
+export interface IRemoveFavorite {
+  type: typeof REMOVE_FAVORITE;
+  payload: IDestination;
 }

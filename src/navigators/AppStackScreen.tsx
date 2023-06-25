@@ -8,6 +8,7 @@ import { View } from 'react-native';
 import { colors } from '@/utils/theme';
 import { tabNavigatorOption, tabOption } from './headerOptions';
 import MyTrip from '@/screens/MyTrip';
+import Wishlist from '@/screens/Wishlist';
 
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
@@ -29,7 +30,7 @@ const AppStack = () => {
       />
       <Tab.Screen
         name="WishlistStack"
-        component={HomeStack}
+        component={Wishlist}
         options={({ route }) => tabOption(route.name)}
       />
       <Tab.Screen
