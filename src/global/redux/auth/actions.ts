@@ -13,17 +13,7 @@ import {
 } from '@/utils/interfaces';
 import * as actionTypes from './actionTypes';
 
-export type TAuthAction =
-  ILoginRequest
-  | ILoginSuccess
-  | ILoginFailure
-  | ISignUpRequest
-  | ISignUpSuccess
-  | ISignUpFailure
-  |IForgotPasswordRequest
-  |IForgotPasswordSuccess
-  |IForgotPasswordFailure
-  |ILogout;
+
 
 export const loginRequest = (): ILoginRequest => ({
   type: actionTypes.LOGIN_REQUEST,

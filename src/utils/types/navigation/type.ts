@@ -20,7 +20,7 @@ type RootStackParamList = {
   FavoritePlace: undefined;
   HomeStack: undefined;
   ProfileStack: undefined;
-  MyTripStack: undefined;
+  MyTrip: undefined;
   WishlistStack: undefined;
   Home: undefined;
 }

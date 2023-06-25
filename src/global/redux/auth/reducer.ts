@@ -1,8 +1,6 @@
 import { IAuthState } from '@/utils/interfaces';
 import * as actionTypes from './actionTypes';
-import { TAuthAction } from './actions';
-
-
+import { TAction } from '@/utils/types/redux/action';
 
 const initialState: IAuthState = {
   user: null,
@@ -12,7 +10,7 @@ const initialState: IAuthState = {
 
 export const authReducer = (
   state: IAuthState = initialState,
-  action: TAuthAction,
+  action: TAction,
 ) => {
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
@@ -38,6 +36,7 @@ export const authReducer = (
     case actionTypes.LOGOUT:
       return{
         ...state,
+        user: null,
         isLoggedIn: false
       }
     default:

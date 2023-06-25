@@ -37,7 +37,7 @@ export const tabOption = (tabName: string): BottomTabNavigationOptions => {
       label = 'Home';
       icon = 'home';
       break;
-    case 'MyTripStack':
+    case 'MyTrip':
       label = 'My Trip';
       icon = 'send';
       iconFocused = 'homeFocused';

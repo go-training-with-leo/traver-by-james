@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React, { PropsWithChildren } from 'react'
 
 export const FlexView = ({children}: PropsWithChildren) => {
@@ -11,11 +11,8 @@ export const FlexView = ({children}: PropsWithChildren) => {
 
 const style = StyleSheet.create({
   root: {
-    flex: 1,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'flex-start',
-    justifyContent: 'center',
-    columnGap: 10,
-    marginTop: 20,
   },
 });
