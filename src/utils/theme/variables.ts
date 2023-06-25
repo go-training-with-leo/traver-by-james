@@ -24,4 +24,8 @@ export const colors = {
     light: 'rgba(232, 232, 232, 1)',
   },
   success: 'rgba(23, 175, 131, 1)',
+  red: 'red',
+  white: 'rgba(255, 255, 255, 1)',
+  black: 'rgba(12, 5, 7, 1)',
+  border: 'rgba(186, 186, 186, 1)',
 };

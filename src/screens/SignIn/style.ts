@@ -16,7 +16,7 @@ export const style = StyleSheet.create({
   },
   registerButton: {
     borderWidth: 1,
-    borderColor: colors.button.border,
+    borderColor: colors.border,
     backgroundColor: colors.button.light,
     marginVertical: 20,
   },
