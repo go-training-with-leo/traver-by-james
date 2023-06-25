@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -19,15 +19,25 @@ import style from './style';
 const MyTrip = () => {
   const { t } = useTranslation('tab');
   const trips = useAppSelector(state => state.user.booked);
-  const [state, setState] = useMergeState({ searchTrips: trips });
+  const [state, setState] = useMergeState({
+    searchTrips: trips,
+    searchText: '',
+  });
 
   const renderDateTime = (startDate: Date, endDate: Date) => {
     return `${renderDate(startDate)} - ${renderDate(endDate)}`;
   };
 
   const handleSearch = (value: string) => {
-    setState({ searchTrips: trips.filter(trip => trip.name.includes(value)) });
+    setState({
+      searchTrips: trips.filter(trip => trip.name.includes(value)),
+      searchText: value,
+    });
   };
+
+  useEffect(() => {
+    handleSearch(state.searchText);
+  }, [trips]);
 
   return (
     <KeyboardView>
