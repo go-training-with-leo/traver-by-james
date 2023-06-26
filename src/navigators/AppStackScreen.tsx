@@ -1,26 +1,25 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@/utils/types';
-import { Home } from '@/screens';
+import { DetailPlace, Home, Place, Profile } from '@/screens';
 import HomeStack from './AppStacks/HomeStackScreen';
-import { Icons, Text } from '@/components';
-import { View } from 'react-native';
-import { colors } from '@/utils/theme';
 import { tabNavigatorOption, tabOption } from './headerOptions';
 import MyTrip from '@/screens/MyTrip';
 import Wishlist from '@/screens/Wishlist';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const AppStack = () => {
+const MainTab = () =>{
   return (
     <Tab.Navigator
       screenOptions={tabNavigatorOption}
       initialRouteName="HomeStack">
       <Tab.Screen
         name="HomeStack"
-        component={HomeStack}
+        component={Home}
         options={({ route }) => tabOption(route.name)}
       />
       <Tab.Screen
@@ -35,10 +34,20 @@ const AppStack = () => {
       />
       <Tab.Screen
         name="ProfileStack"
-        component={HomeStack}
+        component={Profile}
         options={({ route }) => tabOption(route.name)}
       />
     </Tab.Navigator>
+  );
+}
+
+const AppStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="MainTab" component={MainTab} />
+      <Stack.Screen name="Destination" component={Place} />
+      <Stack.Screen name="DetailDestination" component={DetailPlace} />
+    </Stack.Navigator>
   );
 };
 export default AppStack;

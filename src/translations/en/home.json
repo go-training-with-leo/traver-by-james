@@ -1,0 +1,9 @@
+{
+    "title": "Where do you want to explore today?",
+    "welcome": "Hi, {{name}}",
+    "category": "Choose Category",
+    "all": "See all",
+    "favorite": "Favorite Place",
+    "explore": "Explore",
+    "popular": "Popular Package"
+}

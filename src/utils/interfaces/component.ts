@@ -1,3 +1,4 @@
+import { FavoritePlace } from './../../screens/SignUp/FavoritePlace';
 import { ColorValue, ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native/types";
 import { PLACE } from "../enums";
 import { IDestination } from "./action";
@@ -35,6 +36,7 @@ export interface IIconsProps {
   title?: string;
   style?: StyleProp<ViewStyle>;
   fill?: ColorValue;
+  stroke?:ColorValue;
 }
 export interface IButtonProps {
   title: string;
@@ -61,4 +63,17 @@ export interface IDestinationProps {
 export interface IStarsProps {
   value: number;
   textColor?: ColorValue;
+}
+
+export interface IPlaceProps{
+  place: IDestination;
+}
+
+export interface IHeaderProps{
+  title?: string;
+  rightIcon?: React.ReactNode
+}
+
+export interface IHeartButtonProps {
+  place: IDestination;
 }

@@ -5,7 +5,7 @@ const style = StyleSheet.create({
   flexView: {
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   keyboardView: {
     flex: 1,
