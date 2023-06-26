@@ -2,7 +2,7 @@ import { colors } from "@/utils/theme";
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
-  name: { fontWeight: '700',color: colors.white },
+  name: { fontWeight: '700',color: colors.black },
   title: { fontWeight: '600', fontSize: 35, marginTop: 20 },
   menu: { fontWeight: '600', marginTop: 10, fontSize: 16, flex: 1 },
   menuButton: { marginTop: 10 },

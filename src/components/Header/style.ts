@@ -7,8 +7,7 @@ const style = StyleSheet.create({
   },
   column: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center'
   },
   back: {
     flex: 1,
@@ -19,6 +18,8 @@ const style = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    fontWeight: '600',
+    fontSize: 16
   },
   last: {
     flex: 1,
