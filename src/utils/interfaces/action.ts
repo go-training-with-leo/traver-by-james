@@ -66,7 +66,7 @@ export interface IBookTripRequest{
 
 export interface IBookTripSuccess {
   type: typeof BOOK_TRIP_SUCCESS;
-  payload: ITrip;
+  payload: IDestination;
 }
 
 export interface IBoolTripFailure {
@@ -89,6 +89,7 @@ export interface IDestination {
   reviewCount: number;
   reviewScore: number;
   photoUrl: string;
+  location: string;
   gallery: Array<string>;
 }
 

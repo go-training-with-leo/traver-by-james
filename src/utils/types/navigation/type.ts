@@ -1,3 +1,5 @@
+import { IDestination, IPlaceProps } from '@/utils/interfaces';
+import { Destination } from './../../../components/Destination/index';
 type RootStackParamList = {
   Welcome: undefined;
   Auth: undefined;
@@ -23,6 +25,9 @@ type RootStackParamList = {
   MyTrip: undefined;
   WishlistStack: undefined;
   Home: undefined;
-}
+  Destination: { place: IDestination };
+  DetailDestination: { place: IDestination };
+  MainTab: undefined;
+};
 
 export { RootStackParamList };

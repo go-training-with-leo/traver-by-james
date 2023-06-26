@@ -42,7 +42,11 @@ export const Destination = ({ destination }: IDestinationProps) => {
         </View>
       </FlexView>
       <TouchableOpacity style={style.icon} onPress={handlePress}>
-        <Icons name="heart" fill={isFavorited ? colors.red : colors.white} />
+        <Icons
+          name={isFavorited ? 'heart' : 'heartFocused'}
+          {...isFavorited&&{fill: colors.red}}
+          stroke={isFavorited ? colors.red : colors.black}
+        />
       </TouchableOpacity>
     </View>
   );

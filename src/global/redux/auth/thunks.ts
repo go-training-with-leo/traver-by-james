@@ -21,7 +21,6 @@ import type {
 import {
   loginSuccess,
   loginFailed,
-  TAuthAction,
   loginRequest,
   signUpRequest,
   signUpFailure,
@@ -30,8 +29,9 @@ import {
   forgotPasswordFailure,
   signUpSuccess,
 } from './actions';
-import { Alert } from 'react-native';
+
 import { logout } from './actions';
+import { TAction } from '@/utils/types/redux/action';
 
 const onLoginSuccess = (
   credential: FirebaseAuthTypes.UserCredential,
@@ -87,7 +87,7 @@ const onSignUpFailure = (
 
 export const loginWithEmail =
   (props: ILoginWithEmailProps) =>
-  async (dispatch: Dispatch<TAuthAction>) => {
+  async (dispatch: Dispatch<TAction>) => {
     dispatch(loginRequest());
     try {
       const data = await signInWithEmail(props);

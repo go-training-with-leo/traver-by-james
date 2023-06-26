@@ -21,6 +21,8 @@ import Calendar from '@/assets/icons/calendar.svg'
 import Search from '@/assets/icons/search.svg';
 import Star from '@/assets/icons/star.svg';
 import StarActive from '@/assets/icons/star_active.svg';
+import LocationSmall from '@/assets/icons/location_small.svg'
+import ArrowDown from '@/assets/icons/arrow_down.svg'
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -48,8 +50,9 @@ export const Icons = (props: IIconsProps) => {
     calendar: <Calendar {...svgProps} />,
     search: <Search {...svgProps} />,
     starActive: <StarActive {...svgProps} />,
-    star:<Star {...svgProps} />
-
+    star:<Star {...svgProps} />,
+    locationSmall: <LocationSmall {...svgProps} />,
+    arrowDown: <ArrowDown {...svgProps} />
   };
 
   return icons[name];
