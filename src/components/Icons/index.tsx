@@ -23,6 +23,10 @@ import Star from '@/assets/icons/star.svg';
 import StarActive from '@/assets/icons/star_active.svg';
 import LocationSmall from '@/assets/icons/location_small.svg'
 import ArrowDown from '@/assets/icons/arrow_down.svg'
+import Message from '@/assets/icons/message.svg';
+import UserCircle from '@/assets/icons/user_circle.svg';
+import Notification from '@/assets/icons/notification.svg';
+import Global from '@/assets/icons/global.svg';
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -50,9 +54,13 @@ export const Icons = (props: IIconsProps) => {
     calendar: <Calendar {...svgProps} />,
     search: <Search {...svgProps} />,
     starActive: <StarActive {...svgProps} />,
-    star:<Star {...svgProps} />,
+    star: <Star {...svgProps} />,
     locationSmall: <LocationSmall {...svgProps} />,
-    arrowDown: <ArrowDown {...svgProps} />
+    arrowDown: <ArrowDown {...svgProps} />,
+    message: <Message {...svgProps} />,
+    userCircle: <UserCircle {...svgProps} />,
+    notification: <Notification {...svgProps} />,
+    global: <Global {...svgProps} />
   };
 
   return icons[name];

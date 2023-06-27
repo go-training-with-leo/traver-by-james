@@ -109,8 +109,8 @@ export const Login = () => {
             <Button
               title={t('button.forgotPassword')}
               onPress={() => navigation.navigate('VerifyEmail')}
-              buttonStyle={style.buttonContainer}
-              titleStyle={style.buttonTitle}
+              // buttonStyle={style.buttonContainer}
+              // titleStyle={style.buttonTitle}
             />
           </View>
           <Button

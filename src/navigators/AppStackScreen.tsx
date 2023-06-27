@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@/utils/types';
-import { DetailPlace, Home, Place, Profile } from '@/screens';
+import { DetailPlace, Home, Notification, Place, Profile } from '@/screens';
 import HomeStack from './AppStacks/HomeStackScreen';
 import { tabNavigatorOption, tabOption } from './headerOptions';
 import MyTrip from '@/screens/MyTrip';
@@ -47,6 +47,7 @@ const AppStack = () => {
       <Stack.Screen name="MainTab" component={MainTab} />
       <Stack.Screen name="Destination" component={Place} />
       <Stack.Screen name="DetailDestination" component={DetailPlace} />
+      <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>
   );
 };

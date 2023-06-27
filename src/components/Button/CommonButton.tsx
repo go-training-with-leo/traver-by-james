@@ -7,12 +7,21 @@ import { colors } from '@/utils/theme';
 export const Button = ({
   title,
   onPress,
-  buttonStyle,
-  titleStyle,
+  backgroundColor,
+  color,
 }: IButtonProps) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.container, buttonStyle]}>
-      <Text title={title} style={[styles.title, titleStyle]} />
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.container,
+        backgroundColor && {
+          backgroundColor,
+          borderWidth: 0.2,
+          borderColor: colors.border,
+        },
+      ]}>
+      <Text title={title} style={[styles.title, color && { color }]} />
     </TouchableOpacity>
   );
 };

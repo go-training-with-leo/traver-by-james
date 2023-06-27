@@ -1,0 +1,15 @@
+{
+  "title": "Your Profile",
+  "welcome": "Hello, {{name}}",
+  "location": "Semarang, Indonesia",
+  "menu": {
+    "info": "Personal Infomation",
+    "noti": "Notification",
+    "faq": "FAQ",
+    "mode": "Dark Mode",
+    "language": "Language",
+    "signOut": "Logout"
+  },
+  "signOut": "Logout",
+  "cancel": "Cancel"
+}
