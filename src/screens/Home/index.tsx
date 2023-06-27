@@ -109,7 +109,6 @@ export const Home = () => {
   const user = useAppSelector(state => state.auth.user);
   const { t } = useTranslation('home');
   const wishlist = useAppSelector(state=> state.user.wishlist)
-  const dispatch = useAppDispatch();
   const navigation = useNavigation()
   const handlePress = (item: IDestination) => {
     navigation.navigate('Destination', { place: item });
@@ -125,9 +124,6 @@ export const Home = () => {
             style={style.name}
           />
         </FlexView>
-        {/* <View style={{ flex: 1 }}>
-          <Button title="Sign out" onPress={() => dispatch(logOut())} />
-        </View> */}
         <Text title={t('title')} style={style.title} />
         <SearchBar onSearch={() => navigation.navigate('SearchScreen')} />
         <FlexView>
@@ -145,7 +141,7 @@ export const Home = () => {
                 <Text title={t('explore')} style={style.menuButtonText} />
               </TouchableOpacity>
             </FlexView>
-            <View>
+            <View style={style.list}>
               <FlatList
                 data={wishlist}
                 renderItem={({ item, index }) => (

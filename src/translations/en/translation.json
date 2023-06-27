@@ -10,5 +10,10 @@
   "lastSearch": "Last Search",
   "favorite": "Favorite Place",
   "explore": "Explore",
-  "result": "We found {{number}} trip in {{name}}"
+  "result": "We found {{number}} trip in {{name}}",
+  "rangePrice": "Range Price",
+  "review": "Star Review",
+  "include": "Include",
+  "clear": "Clear All",
+  "apply": "Apply"
 }

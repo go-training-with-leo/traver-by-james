@@ -25,7 +25,7 @@ export const SearchScreen = () => {
   const recentSearches = useAppSelector(state => state.app.recentSearches);
   const wishlist = useAppSelector(state => state.user.wishlist);
   const destinations = useAppSelector(state => state.app.destinations);
-  const [state, setState] = useMergeState({ search: '', result: [] });
+  const [state, setState] = useMergeState({ search: '', result: [], isSearch: false });
 
   const handlePressRecent = (value: string) => {
     setState({ search: value });
@@ -34,6 +34,7 @@ export const SearchScreen = () => {
   const handleSearch = (value: string) => {
     setState({
       search: value,
+      isSearch: true,
       result: destinations.filter(item =>
         item.name.toLowerCase().includes(value.toLowerCase()),
       ),
@@ -53,7 +54,7 @@ export const SearchScreen = () => {
       <Header
         title={t('search')}
         rightIcon={
-          state.search ? (
+          state.isSearch ? (
             <TouchableOpacity onPress={handleFilter}>
               <Icons name="filter" height={20} width={20} />
             </TouchableOpacity>
@@ -61,7 +62,7 @@ export const SearchScreen = () => {
         }
       />
       <SearchBar value={state.search} onSearch={handleSearch} />
-        {!state.search ? (
+        {!state.isSearch ? (
           <>
             <Text title={t('lastSearch')} style={style.recentTitle} />
             {recentSearches.slice(0, 3).map((item, index) => (
@@ -113,7 +114,7 @@ export const SearchScreen = () => {
         {state.result.length > 0 && (
           <ScrollView>
             {state.result.map((item, index) => (
-              <TouchableOpacity onPress={() => null}>
+              <TouchableOpacity onPress={() =>  navigation.navigate('Destination', { place: item })}>
                 <Destination destination={item} key={index} />
               </TouchableOpacity>
             ))}

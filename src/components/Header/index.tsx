@@ -25,6 +25,7 @@ export const Header = ({title, rightIcon}:IHeaderProps) => {
           <Text
             title={title}
             style={style.title}
+            numberOfLines={1}
           />
         </View>
         <View

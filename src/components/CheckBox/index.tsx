@@ -5,6 +5,7 @@ import { Text } from '../Text';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { colors } from '@/utils/theme';
 import { useTranslation } from 'react-i18next';
+import style from './style';
 
 export const CheckBox = () => {
   const { t } = useTranslation('auth');
@@ -29,12 +30,4 @@ export const CheckBox = () => {
   );
 };
 
-const style = StyleSheet.create({
-  container: { flexDirection: 'row', alignItems: 'center', flex: 1 },
-  checkbox: { borderRadius: 0 },
-  description: {
-    fontWeight: '300',
-    color: colors.textSecond.light,
-    fontSize: 14,
-  },
-});
+
