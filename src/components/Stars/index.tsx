@@ -6,7 +6,8 @@ import { IStarsProps } from '@/utils/interfaces';
 import { Text } from '../Text';
 import style from './style';
 
-const Stars = ({ value, textColor }: IStarsProps) => {
+export const Stars = ({ value, textColor }: IStarsProps) => {
+  console.log("🚀 ~ file: index.tsx:10 ~ Stars ~ value:", value)
   return (
     <FlexView style={style.container}>
       {Array(MAX_RATING)
@@ -26,5 +27,3 @@ const Stars = ({ value, textColor }: IStarsProps) => {
     </FlexView>
   );
 };
-
-export default Stars;

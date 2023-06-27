@@ -9,9 +9,10 @@ import style from './style';
 import { colors } from '@/utils/theme';
 import { useAppDispatch, useAppSelector } from '../Hooks';
 import { addFavorite, removeFavorite } from '@/global/redux';
-import Stars from '../Stars';
+import { Stars } from '../Stars';
 
 export const Destination = ({ destination }: IDestinationProps) => {
+  console.log("🚀 ~ file: index.tsx:15 ~ Destination ~ destination:", destination)
   const wishlist = useAppSelector(state => state.user.wishlist);
   const dispatch = useAppDispatch();
 

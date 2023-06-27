@@ -1,6 +1,7 @@
 import {
   IAddFavorite,
-    IBookTripSuccess,
+  IAddSearch,
+  IBookTripSuccess,
   IForgotPasswordFailure,
   IForgotPasswordRequest,
   IForgotPasswordSuccess,
@@ -9,14 +10,18 @@ import {
   ILoginSuccess,
   ILogout,
   IRemoveFavorite,
+  IRemoveSearch,
   ISignUpFailure,
   ISignUpRequest,
   ISignUpSuccess,
 } from '@/utils/interfaces';
 
-type TUserAction = IBookTripSuccess|IAddFavorite|IRemoveFavorite;
+type TUserAction = IBookTripSuccess | IAddFavorite | IRemoveFavorite;
 
-type TAuthAction= ILoginRequest
+type TAppAction = IAddSearch | IRemoveSearch;
+
+type TAuthAction =
+  | ILoginRequest
   | ILoginSuccess
   | ILoginFailure
   | ISignUpRequest
@@ -27,5 +32,4 @@ type TAuthAction= ILoginRequest
   | IForgotPasswordFailure
   | ILogout;
 
-export type TAction = TUserAction|TAuthAction
-  
+export type TAction = TUserAction | TAuthAction| TAppAction;

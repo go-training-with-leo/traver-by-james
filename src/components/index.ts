@@ -15,3 +15,5 @@ export * from './Stars';
 export * from './Avatar';
 export * from './Header';
 export * from './Modal';
+export * from './Stars';
+export * from './FavoriteCard';

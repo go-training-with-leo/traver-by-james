@@ -9,6 +9,8 @@ export interface IAuthState {
 
 export interface IAppState {
   loading: boolean;
+  recentSearches: Array<string>;
+  destinations: Array<IDestination>;
 }
 
 export interface IUserState {

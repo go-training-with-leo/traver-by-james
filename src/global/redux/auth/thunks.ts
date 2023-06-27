@@ -1,6 +1,5 @@
 import type { Dispatch } from 'redux';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-
 import { COLLECTION } from '@/utils/enums';
 import {
   signInWithEmail,
@@ -100,7 +99,7 @@ export const loginWithEmail =
   };
 
 export const loginWithFacebook =
-  ({onSuccess, onFailure}: ICallBackProps) => async (dispatch: Dispatch<TAuthAction>) => {
+  ({onSuccess, onFailure}: ICallBackProps) => async (dispatch: Dispatch<TAction>) => {
     dispatch(loginRequest());
     try {
       const data = await signInWithFacebook();
@@ -114,7 +113,7 @@ export const loginWithFacebook =
 
 export const loginWithGoogle =
   ({ onSuccess, onFailure }: ICallBackProps) =>
-  async (dispatch: Dispatch<TAuthAction>) => {
+  async (dispatch: Dispatch<TAction>) => {
     dispatch(loginRequest());
     try {
       const data = await signInWithGoogle();
@@ -127,7 +126,7 @@ export const loginWithGoogle =
   };
 
 export const signUp =
-  (props: ISignUpProps) => async (dispatch: Dispatch<TAuthAction>) => {
+  (props: ISignUpProps) => async (dispatch: Dispatch<TAction>) => {
     dispatch(signUpRequest());
     try {
       const data = await signUpEmailPassword(props);

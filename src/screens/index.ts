@@ -5,4 +5,8 @@ export * from './SignUp';
 export * from './Home';
 export * from './Profile';
 export * from './Place';
-export * from './Notification'
+export * from './Notification';
+export * from './SearchScreen';
+export * from './MyTrip';
+export * from './Wishlist';
+export * from './FilterScreen';

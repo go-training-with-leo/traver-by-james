@@ -1,7 +1,14 @@
 {
-  "search": "Search destination",
+  "searchPlaceholder": "Search destination",
   "trip": "List Your Trip",
   "wishlist": "Your Wishlist",
   "notification": "Notification",
-  "today": "Today"
+  "today": "Today",
+  "search": "Search",
+  "filter": "Filter",
+  "category": "Category",
+  "lastSearch": "Last Search",
+  "favorite": "Favorite Place",
+  "explore": "Explore",
+  "result": "We found {{number}} trip in {{name}}"
 }

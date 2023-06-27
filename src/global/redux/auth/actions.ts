@@ -11,7 +11,7 @@ import {
   ISignUpSuccess,
   IUser,
 } from '@/utils/interfaces';
-import * as actionTypes from './actionTypes';
+import * as actionTypes from '../actionTypes';
 
 
 
