@@ -12,7 +12,7 @@ import {
 } from '@/components';
 import style from './styles';
 
-const Wishlist = () => {
+export const Wishlist = () => {
   const { t } = useTranslation('translation');
   const wishlist = useAppSelector(state => state.user.wishlist);
   const [state, setState] = useMergeState({
@@ -22,7 +22,7 @@ const Wishlist = () => {
 
   const handleSearch = (value: string) => {
     setState({
-      searchingWishlist: wishlist.filter(item => item.name.includes(value)),
+      searchingWishlist: wishlist.filter(item => item.name.toLowerCase().includes(value.toLowerCase())),
       search: value,
     });
   };
@@ -46,4 +46,3 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;

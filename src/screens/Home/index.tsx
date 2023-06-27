@@ -8,14 +8,12 @@ import {
   SearchBar,
   Avatar,
   Destination,
-  Button,
-  useAppDispatch
+  useAppDispatch,
+  FavoriteCard
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 import style from './style';
 import Category from './Category';
-import FavoritePlace from './FavoritePlace';
-import { logOut } from '@/global/redux';
 import dayjs from 'dayjs';
 import { IDestination } from '@/utils/interfaces';
 import { useNavigation } from '@react-navigation/native';
@@ -131,7 +129,7 @@ export const Home = () => {
           <Button title="Sign out" onPress={() => dispatch(logOut())} />
         </View> */}
         <Text title={t('title')} style={style.title} />
-        <SearchBar onSearch={() => null} />
+        <SearchBar onSearch={() => navigation.navigate('SearchScreen')} />
         <FlexView>
           <Text title={t('category')} style={style.menu} />
           <TouchableOpacity style={style.menuButton}>
@@ -151,7 +149,7 @@ export const Home = () => {
               <FlatList
                 data={wishlist}
                 renderItem={({ item, index }) => (
-                  <FavoritePlace place={item} key={index} />
+                  <FavoriteCard place={item} key={index} />
                 )}
                 horizontal={true}
               />

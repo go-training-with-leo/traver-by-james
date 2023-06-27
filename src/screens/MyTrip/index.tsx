@@ -16,7 +16,7 @@ import { renderPrice, renderDate } from '@/utils/helpers';
 
 import style from './style';
 
-const MyTrip = () => {
+export const MyTrip = () => {
   const { t } = useTranslation('translation');
   const trips = useAppSelector(state => state.user.booked);
   const [state, setState] = useMergeState({
@@ -66,4 +66,4 @@ const MyTrip = () => {
   );
 };
 
-export default MyTrip;
+

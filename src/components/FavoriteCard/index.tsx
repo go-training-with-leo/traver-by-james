@@ -2,16 +2,15 @@ import { View, ImageBackground, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { IPlaceProps } from '@/utils/interfaces';
 import { colors } from '@/utils/theme';
-import { FlexView, Icons, Text, WrapperContent } from '@/components';
-import Stars from '@/components/Stars';
+import { FlexView, Icons, Stars, Text } from '@/components';
 import style from './style';
 import { useNavigation } from '@react-navigation/native';
 
-const FavoritePlace = ({ place }: IPlaceProps) => {
-  const navigation = useNavigation()
-  const handlePress = () =>{
-    navigation.navigate("Destination", {place})
-  }
+export const FavoriteCard = ({ place }: IPlaceProps) => {
+  const navigation = useNavigation();
+  const handlePress = () => {
+    navigation.navigate('Destination', { place });
+  };
   return (
     <TouchableOpacity onPress={handlePress}>
       <ImageBackground
@@ -19,25 +18,17 @@ const FavoritePlace = ({ place }: IPlaceProps) => {
         resizeMode="cover"
         imageStyle={style.imgBackground}
         style={style.favoriteImgBackground}>
-        <View
-          style={style.favoriteIcon}>
+        <View style={style.favoriteIcon}>
           <Icons name="heart" fill={colors.red} height={15} />
         </View>
-        <View
-          style={style.favoriteContent}>
-          <Text
-            title={place.name}
-            style={style.favoriteName}
-          />
+        <View style={style.favoriteContent}>
+          <Text title={place.name} style={style.favoriteName} />
           <FlexView>
             <View style={style.locationIcon}>
               <Icons name="locationSmall" height={20} />
             </View>
             <View style={style.locationTextContainer}>
-              <Text
-                title={place.location}
-                style={style.locationText}
-              />
+              <Text title={place.location} style={style.locationText} />
             </View>
           </FlexView>
           <View style={style.reviewContainer}>
@@ -49,4 +40,3 @@ const FavoritePlace = ({ place }: IPlaceProps) => {
   );
 };
 
-export default FavoritePlace;

@@ -27,6 +27,9 @@ import Message from '@/assets/icons/message.svg';
 import UserCircle from '@/assets/icons/user_circle.svg';
 import Notification from '@/assets/icons/notification.svg';
 import Global from '@/assets/icons/global.svg';
+import Recent from '@/assets/icons/recent.svg';
+import Close from '@/assets/icons/close.svg';
+import Filter from '@/assets/icons/filter.svg';
 import { IIconsProps } from '@/utils/interfaces';
 
 export const Icons = (props: IIconsProps) => {
@@ -60,7 +63,10 @@ export const Icons = (props: IIconsProps) => {
     message: <Message {...svgProps} />,
     userCircle: <UserCircle {...svgProps} />,
     notification: <Notification {...svgProps} />,
-    global: <Global {...svgProps} />
+    global: <Global {...svgProps} />,
+    recent: <Recent {...svgProps} />,
+    close: <Close {...svgProps} />,
+    filter: <Filter {...svgProps} />,
   };
 
   return icons[name];

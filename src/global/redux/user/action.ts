@@ -1,5 +1,5 @@
 import { IAddFavorite, IBookTripSuccess, IDestination, IRemoveFavorite, ITrip } from '@/utils/interfaces';
-import * as actionTypes from './actionTypes';
+import * as actionTypes from '../actionTypes'
 
 export const bookTrip = (trip: IDestination):IBookTripSuccess => ({
   type: actionTypes.BOOK_TRIP_SUCCESS,

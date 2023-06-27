@@ -1,6 +1,6 @@
-import { Notification } from '@/assets/icons/notification.svg';
-import { IDestination, IPlaceProps } from '@/utils/interfaces';
-import { Destination } from './../../../components/Destination/index';
+import { FilterScreen } from './../../../screens/FilterScreen/index';
+
+import { IDestination } from '@/utils/interfaces';
 type RootStackParamList = {
   Welcome: undefined;
   Auth: undefined;
@@ -30,6 +30,8 @@ type RootStackParamList = {
   DetailDestination: { place: IDestination };
   MainTab: undefined;
   Notification: undefined;
+  SearchScreen: undefined;
+  FilterScreen: undefined;
 };
 
 export { RootStackParamList };

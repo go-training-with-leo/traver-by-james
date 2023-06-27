@@ -6,6 +6,7 @@ import { IDestination } from "./action";
 
 export interface ISearchBarProps {
   onSearch: (value: string) => void;
+  value?: string;
 }
 export interface ISwitchProps {
   value: boolean;
