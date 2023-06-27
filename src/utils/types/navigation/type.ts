@@ -1,3 +1,4 @@
+import { Notification } from '@/assets/icons/notification.svg';
 import { IDestination, IPlaceProps } from '@/utils/interfaces';
 import { Destination } from './../../../components/Destination/index';
 type RootStackParamList = {
@@ -28,6 +29,7 @@ type RootStackParamList = {
   Destination: { place: IDestination };
   DetailDestination: { place: IDestination };
   MainTab: undefined;
+  Notification: undefined;
 };
 
 export { RootStackParamList };

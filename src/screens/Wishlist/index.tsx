@@ -13,7 +13,7 @@ import {
 import style from './styles';
 
 const Wishlist = () => {
-  const { t } = useTranslation('tab');
+  const { t } = useTranslation('translation');
   const wishlist = useAppSelector(state => state.user.wishlist);
   const [state, setState] = useMergeState({
     searchingWishlist: wishlist,

@@ -1,3 +1,4 @@
+import { style } from './../../screens/SignIn/style';
 import { FavoritePlace } from './../../screens/SignUp/FavoritePlace';
 import { ColorValue, ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native/types";
 import { PLACE } from "../enums";
@@ -9,6 +10,7 @@ export interface ISearchBarProps {
 export interface ISwitchProps {
   value: boolean;
   onChange: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 export interface WrapperContentProps {
   isTransparent?: boolean;
@@ -41,8 +43,8 @@ export interface IIconsProps {
 export interface IButtonProps {
   title: string;
   onPress: () => void;
-  buttonStyle?: StyleProp<ViewStyle>;
-  titleStyle?: StyleProp<TextStyle>;
+  backgroundColor?: ColorValue;
+  color?: ColorValue;
 }
 
 export interface IBackButtonProps {
@@ -76,4 +78,8 @@ export interface IHeaderProps{
 
 export interface IHeartButtonProps {
   place: IDestination;
+}
+export interface IModalProps {
+  visible: boolean;
+  onClose: () => void;
 }

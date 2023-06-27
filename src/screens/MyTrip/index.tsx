@@ -17,7 +17,7 @@ import { renderPrice, renderDate } from '@/utils/helpers';
 import style from './style';
 
 const MyTrip = () => {
-  const { t } = useTranslation('tab');
+  const { t } = useTranslation('translation');
   const trips = useAppSelector(state => state.user.booked);
   const [state, setState] = useMergeState({
     searchTrips: trips,

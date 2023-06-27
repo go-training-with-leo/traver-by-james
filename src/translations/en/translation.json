@@ -1,3 +1,7 @@
 {
-    "search":"Search destination"
+  "search": "Search destination",
+  "trip": "List Your Trip",
+  "wishlist": "Your Wishlist",
+  "notification": "Notification",
+  "today": "Today"
 }
