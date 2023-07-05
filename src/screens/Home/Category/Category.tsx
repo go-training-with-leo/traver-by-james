@@ -2,7 +2,7 @@ import { View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { PLACE } from '@/utils/enums';
 import { useMergeState, Image, Text, Icons, FlexView } from '@/components';
-import style from './style';
+import style from '../style';
 import { colors } from '@/utils/theme';
 
 const Category = () => {

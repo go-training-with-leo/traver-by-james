@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Destination,
   FavoriteCard,
@@ -16,7 +16,12 @@ import {
 import { useTranslation } from 'react-i18next';
 import { removeSearch } from '@/global/redux';
 import style from './style';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
+import { IDestination, ISearchScreenProps } from '@/utils/interfaces';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/utils/types';
+
+type TSearchScreenProps = NativeStackScreenProps<RootStackParamList,'SearchScreen'>['route']
 
 export const SearchScreen = () => {
   const { t } = useTranslation('translation');
@@ -24,9 +29,9 @@ export const SearchScreen = () => {
   const navigation = useNavigation()
   const recentSearches = useAppSelector(state => state.app.recentSearches);
   const wishlist = useAppSelector(state => state.user.wishlist);
-  const destinations = useAppSelector(state => state.app.destinations);
+  const destinations:Array<IDestination> = useAppSelector(state => state.app.destinations);
   const [state, setState] = useMergeState({ search: '', result: [], isSearch: false });
-
+  const route = useRoute<TSearchScreenProps>()
   const handlePressRecent = (value: string) => {
     setState({ search: value });
   };
@@ -45,9 +50,34 @@ export const SearchScreen = () => {
     dispatch(removeSearch(value));
   };
 
-  const handleFilter = ()=>{
+  const navigateFilter = ()=>{
     navigation.navigate("FilterScreen")
   }
+
+  useEffect(()=>{
+    if(route.params?.filter){
+      const filterDestination = () => {
+        const condition = route.params.filter;
+        condition.rating &&
+          setState({
+            search: '',
+            result: 
+              destinations
+            .filter(item => item.reviewScore >= route.params.filter.rating),
+          });
+        condition.max &&
+          condition.min &&
+          setState({
+            search: '',
+            result: destinations.filter(
+              item =>
+                item.price >= condition.min && item.price <= condition.max,
+            ),
+          });
+      };
+      filterDestination()
+    }
+  },[route.params?.filter])
 
   return (
     <WrapperContent>
@@ -55,7 +85,7 @@ export const SearchScreen = () => {
         title={t('search')}
         rightIcon={
           state.isSearch ? (
-            <TouchableOpacity onPress={handleFilter}>
+            <TouchableOpacity onPress={navigateFilter}>
               <Icons name="filter" height={20} width={20} />
             </TouchableOpacity>
           ) : null

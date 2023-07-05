@@ -1,12 +1,6 @@
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 
-export interface IUser {
-  displayName: string;
-  photoUrl: string;
-  email: string;
-  uid: string;
-  favoritePlace?: Array<string|number>;
-}
+
 
 export interface ILoginWithEmailProps extends ICallBackProps {
   email: string;
@@ -23,6 +17,10 @@ export interface ISignUpProps extends ICallBackProps{
 export interface IAuthResponse {
   credential: FirebaseAuthTypes.UserCredential | null | FirebaseAuthTypes.UserCredential & ISignUpProps;
   error: null | string;
+}
+
+export interface IAddDocResponse{
+  success: boolean;
 }
 
 export interface IForgotPasswordProps extends ICallBackProps {

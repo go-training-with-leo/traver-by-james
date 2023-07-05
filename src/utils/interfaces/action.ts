@@ -17,7 +17,7 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
 } from '@/global/redux';
-import { IUser } from './auth';
+import { IDestination, IUser } from './app';
 
 export interface ILoginRequest {
   type: typeof LOGIN_REQUEST;
@@ -81,23 +81,7 @@ export interface INotification {
   markRead: boolean;
 }
 
-export interface IDestination {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-  reviewCount: number;
-  reviewScore: number;
-  photoUrl: string;
-  location: string;
-  gallery: Array<string>;
-}
 
-export interface ITrip extends IDestination{
-  members: number;
-}
 
 export interface IAddFavorite {
   type: typeof ADD_FAVORITE,

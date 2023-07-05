@@ -11,6 +11,7 @@ import {
   WrapperContent,
   useAppDispatch,
   useAppSelector,
+  useMergeState,
 } from '@/components';
 import style from './style';
 import { RootStackParamList } from '@/utils/types';
@@ -19,6 +20,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { renderPrice } from '@/utils/helpers';
 import { addFavorite, bookTrip, removeFavorite } from '@/global/redux';
 import { colors } from '@/utils/theme';
+import { ITrip } from '@/utils/interfaces';
 
 type DestinationProps = NativeStackScreenProps<
   RootStackParamList,
@@ -28,15 +30,24 @@ type DestinationProps = NativeStackScreenProps<
 export const Place = () => {
   const route = useRoute<DestinationProps>();
   const navigation = useNavigation()
-  const wishlist = useAppSelector(state => state.user.wishlist);
-  const isFavorite = wishlist.find(item => item.id === route.params.place.id)
-    ? true
-    : false;
+  const [state, setState] = useMergeState({members: 2})
+  const user = useAppSelector(state=> state.auth.user)
   const dispatch = useAppDispatch();
 
   const navigateDetail = useCallback(() =>{
     navigation.navigate("DetailDestination", {place: route.params.place})
   },[navigation])
+
+  const bookTripToPlace = () => {
+    const trip:ITrip = {
+      ...route.params.place,
+      members: state.members,
+      userId: user.uid,
+      price: route.params.place.price*state.members
+    }
+    dispatch(bookTrip(trip))
+  }
+
   return (
     <ImageBackground
       source={{ uri: route.params.place.photoUrl }}
@@ -45,11 +56,7 @@ export const Place = () => {
         flex: 1,
       }}>
       <WrapperContent isTransparent={true}>
-        <Header
-          rightIcon={
-            <HeartButton place={route.params.place} />
-          }
-        />
+        <Header rightIcon={<HeartButton place={route.params.place} />} />
         <View style={style.introTitleContainer}>
           <Text title={route.params.place.name} style={style.introTitle} />
           <FlexView>
@@ -59,6 +66,10 @@ export const Place = () => {
               style={[style.locationText, style.marginLeft]}
             />
           </FlexView>
+          <Text
+            title={'100+ People have explored'}
+            style={{ color: colors.white, marginVertical: 10 }}
+          />
           <Text
             title={route.params.place.description}
             style={{ color: 'white' }}
@@ -96,7 +107,7 @@ export const Place = () => {
             <View style={{ flex: 1 }}>
               <Button
                 title={'Booking'}
-                onPress={() => dispatch(bookTrip(route.params.place))}
+                onPress={() => bookTripToPlace()}
               />
             </View>
           </FlexView>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { Alert, TouchableOpacity, View } from 'react-native';
 import {
   WrapperContent,
@@ -11,6 +11,8 @@ import {
   useAppSelector,
   useMergeState,
   Loading,
+  FlexView,
+  Text
 } from '@/components';
 import { useTranslation } from 'react-i18next';
 import { style } from './style';
@@ -22,9 +24,9 @@ import {
   loginWithGoogle,
 } from '@/global/redux/auth';
 import type {} from 'redux-thunk/extend-redux';
-import { handleAuthException } from '@/utils/helpers';
+import { emailValidation, handleAuthException, passwordValidation } from '@/utils/helpers';
 import { loadingSelector } from '@/global/redux';
-import { authErrors } from '@/utils/constants';
+import { colors } from '@/utils/theme';
 
 export const Login = () => {
   const { t } = useTranslation('auth');
@@ -34,6 +36,8 @@ export const Login = () => {
   const [state, setState] = useMergeState({
     email: '',
     password: '',
+    // canLogin: false,
+    errorEmail: false,
   });
 
   const auth = useAppSelector(state => state.auth);
@@ -50,38 +54,50 @@ export const Login = () => {
 
   const signIn = 
     async (method: SignInMethod) => {
-      switch (method) {
-        case SignInMethod.FB:
-          dispatch(loginWithFacebook({
-            onSuccess: navigateHome,
-            onFailure: ()=> auth.error&& handleAuthException(auth.error,t)
-          }));
-          break;
-        case SignInMethod.Google:
-          dispatch(
-            loginWithGoogle({
-              onSuccess: () => Alert.alert('Success'),
-              onFailure: () => auth.error && handleAuthException(auth.error, t),
-            }),
-          );
-          break;
-        case SignInMethod.Email:
-          dispatch(
-            loginWithEmail({
-              email: state.email.trim(),
-              password: state.password,
-              onSuccess: () => Alert.alert('Success'),
-              onFailure: () => auth.error && handleAuthException(auth.error, t),
-            }),
-          );
-          break;
-        default:
-          break;
+      
+        switch (method) {
+          case SignInMethod.FB:
+            dispatch(
+              loginWithFacebook({
+                onSuccess: navigateHome,
+                onFailure: () =>
+                  auth.error && handleAuthException(auth.error, t),
+              }),
+            );
+            break;
+          case SignInMethod.Google:
+            dispatch(
+              loginWithGoogle({
+                onSuccess: () => Alert.alert('Success'),
+                onFailure: () =>
+                  auth.error && handleAuthException(auth.error, t),
+              }),
+            );
+            break;
+          case SignInMethod.Email:
+            if(emailValidation(state.email)){
+              dispatch(
+                loginWithEmail({
+                  email: state.email.trim(),
+                  password: state.password,
+                  onSuccess: () => Alert.alert('Success'),
+                  onFailure: () =>
+                    auth.error && handleAuthException(auth.error, t),
+                }),
+              );
+            }
+            else{
+              setState({errorEmail: true})
+            }
+            break;
+          default:
+            break;
+        
       }
     }
 
   const handleChangeInput = ({ name, text }) => {
-    setState({ [name]: text });
+    setState({ [name]: text, [`error${name.charAt(0).toUpperCase()+name.slice(1)}`]: false });
   };
 
   return (
@@ -98,6 +114,9 @@ export const Login = () => {
             name="email"
             onChangeText={handleChangeInput}
           />
+          {state.errorEmail && (
+            <Text title={t('input.email.error')} style={style.error} />
+          )}
           <Input
             label={t('input.password.label')}
             type="password"
@@ -105,19 +124,24 @@ export const Login = () => {
             name="password"
           />
           <View style={style.option}>
-            <CheckBox />
+            <FlexView>
+              <CheckBox />
+              <TouchableOpacity
+                onPress={() => navigation.navigate('VerifyEmail')}>
+                <Text
+                  title={t('button.forgotPassword')}
+                  style={{ color: colors.textSecond.light, fontSize: 14 }}
+                />
+              </TouchableOpacity>
+            </FlexView>
+          </View>
+          <View style={{ marginBottom: 10 }}>
             <Button
-              title={t('button.forgotPassword')}
-              onPress={() => navigation.navigate('VerifyEmail')}
-              // buttonStyle={style.buttonContainer}
-              // titleStyle={style.buttonTitle}
+              title={t('button.register')}
+              onPress={createAccount}
+              backgroundColor={colors.white}
             />
           </View>
-          <Button
-            title={t('button.register')}
-            onPress={createAccount}
-            buttonStyle={style.registerButton}
-          />
           <Button
             title={t('button.login')}
             onPress={() => signIn(SignInMethod.Email)}

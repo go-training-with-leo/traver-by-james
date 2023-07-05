@@ -30,7 +30,7 @@ type RootStackParamList = {
   DetailDestination: { place: IDestination };
   MainTab: undefined;
   Notification: undefined;
-  SearchScreen: undefined;
+  SearchScreen: { filter?: { min?: number; max?: number; rating?: number } };
   FilterScreen: undefined;
 };
 

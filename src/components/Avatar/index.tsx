@@ -1,11 +1,10 @@
 import { View, Image } from 'react-native'
 import React from 'react'
-import { useAppSelector } from '../Hooks'
 import { Text } from '../Text'
 import style from './style'
+import { IAvatarProps } from '@/utils/interfaces'
 
-export const Avatar = () => {
-  const user = useAppSelector(state=> state.auth.user)
+export const Avatar = ({user}:IAvatarProps) => {
   return (
     <View style={style.container}>
       {user.photoUrl ? (

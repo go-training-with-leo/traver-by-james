@@ -19,17 +19,26 @@ import Review from './Review';
 import { colors } from '@/utils/theme';
 import style from './style';
 import { renderPrice } from '@/utils/helpers';
+import { useNavigation } from '@react-navigation/core';
 
 export const FilterScreen = () => {
   const { t } = useTranslation('translation');
+  const navigation = useNavigation()
   const [state, setState] = useMergeState({
     minSelected: 0,
     maxSelected: 2000,
-    rating: null,
+    rating: 5,
     min: 0,
     max: 2000,
   });
 
+  const applyFilter=() =>{
+    navigation.navigate("SearchScreen",{filter:{
+      max: state.maxSelected,
+      min: state.minSelected,
+      rating: state.rating
+    }})
+  }
   return (
     <>
       <WrapperContent>
@@ -92,7 +101,7 @@ export const FilterScreen = () => {
             />
           </View>
           <View style={style.footer}>
-            <Button title={t('apply')} onPress={() => null} />
+            <Button title={t('apply')} onPress={applyFilter} />
           </View>
         </FlexView>
       </Footer>

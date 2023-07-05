@@ -40,4 +40,7 @@ export const style = StyleSheet.create({
     justifyContent: 'center', 
     columnGap: 20 
   },
+  error:{
+    color: colors.red
+  }
 });

@@ -58,6 +58,7 @@ export const VerifyEmail = () => {
         }),
       );
     }
+    else setState({error: true})
   };
   return (
     <KeyboardView>
