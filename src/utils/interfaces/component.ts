@@ -3,6 +3,7 @@ import { FavoritePlace } from './../../screens/SignUp/FavoritePlace';
 import { ColorValue, ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native/types";
 import { PLACE } from "../enums";
 import { IDestination } from "./action";
+import { IUser } from './app';
 
 export interface ISearchBarProps {
   onSearch: (value: string) => void;
@@ -83,4 +84,8 @@ export interface IHeartButtonProps {
 export interface IModalProps {
   visible: boolean;
   onClose: () => void;
+}
+
+export interface IAvatarProps{
+  user: IUser 
 }

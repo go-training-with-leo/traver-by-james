@@ -10,11 +10,12 @@ import { colors } from '@/utils/theme';
 import { useAppDispatch, useAppSelector } from '../Hooks';
 import { addFavorite, removeFavorite } from '@/global/redux';
 import { Stars } from '../Stars';
+import { useNavigation } from '@react-navigation/core';
 
 export const Destination = ({ destination }: IDestinationProps) => {
-  console.log("🚀 ~ file: index.tsx:15 ~ Destination ~ destination:", destination)
   const wishlist = useAppSelector(state => state.user.wishlist);
   const dispatch = useAppDispatch();
+  const navigation = useNavigation()
 
   const isFavorited: boolean = useMemo(() => {
     return wishlist.find(item => item.id === destination.id) ? true : false;
@@ -25,27 +26,33 @@ export const Destination = ({ destination }: IDestinationProps) => {
       ? dispatch(removeFavorite(destination))
       : dispatch(addFavorite(destination));
   };
+
+  const navigateDestination = () =>{
+    navigation.navigate("Destination",{place:destination})
+  }
   return (
     <View style={style.container}>
-      <FlexView>
-        <View style={style.imgContainer}>
-          <Image source={{ uri: destination.photoUrl }} style={style.img} />
-        </View>
-        <View style={style.contentContainer}>
-          <Text title={destination.name} style={style.title} />
-          <Text title={renderPrice(destination.price)} style={style.price} />
-          <Stars value={destination.reviewScore} />
-          <Text
-            title={destination.description}
-            numberOfLines={2}
-            style={style.description}
-          />
-        </View>
-      </FlexView>
+      <TouchableOpacity onPress={navigateDestination}>
+        <FlexView>
+          <View style={style.imgContainer}>
+            <Image source={{ uri: destination.photoUrl }} style={style.img} />
+          </View>
+          <View style={style.contentContainer}>
+            <Text title={destination.name} style={style.title} />
+            <Text title={renderPrice(destination.price)} style={style.price} />
+            <Stars value={destination.reviewScore} />
+            <Text
+              title={destination.description}
+              numberOfLines={2}
+              style={style.description}
+            />
+          </View>
+        </FlexView>
+      </TouchableOpacity>
       <TouchableOpacity style={style.icon} onPress={handlePress}>
         <Icons
           name={isFavorited ? 'heart' : 'heartFocused'}
-          {...isFavorited&&{fill: colors.red}}
+          {...(isFavorited && { fill: colors.red })}
           stroke={isFavorited ? colors.red : colors.black}
         />
       </TouchableOpacity>

@@ -1,3 +1,6 @@
 export enum COLLECTION {
-    USER ='user'
+    USER ='user',
+    TRIP='trip',
+    REVIEWS='reviews',
+    PLACE='place'
 }

@@ -22,6 +22,9 @@ export const handleAuthException = (
     case authErrors.weekPassword:
       Alert.alert(t('exception.weekPassword'));
       break;
+    case authErrors.network:
+      Alert.alert(t('exception.network'));
+      break;
     case authErrors.cancel:
       break;
     default:

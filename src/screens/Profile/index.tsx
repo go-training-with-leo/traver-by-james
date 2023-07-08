@@ -89,7 +89,7 @@ export const Profile = () => {
     <WrapperContent>
       <Text title={t('title')} style={style.title} />
       <FlexView style={style.user}>
-        <Avatar />
+        <Avatar user={user} />
         <View>
           <Text
             title={t('welcome', { name: user.displayName })}

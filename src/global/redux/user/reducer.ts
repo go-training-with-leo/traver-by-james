@@ -1,4 +1,4 @@
-import { IDestination, ITrip, IUserState } from '@/utils/interfaces';
+import { IUserState } from '@/utils/interfaces';
 import * as actionTypes from '../actionTypes';
 import { TAction } from '@/utils/types/redux/action';
 

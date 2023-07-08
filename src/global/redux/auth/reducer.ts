@@ -5,7 +5,7 @@ import { TAction } from '@/utils/types/redux/action';
 const initialState: IAuthState = {
   user: null,
   error: '',
-  isLoggedIn: true
+  isLoggedIn: false
 };
 
 export const authReducer = (

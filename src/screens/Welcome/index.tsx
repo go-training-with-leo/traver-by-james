@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { ReactElement, useCallback, useEffect } from 'react';
 import { ImageBackground, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,21 +10,28 @@ import {
   Button,
   useMergeState,
   Input,
+  useAppDispatch,
 } from '@/components';
 import { useTranslation } from '@/config/i18n';
 import { WelcomeProgressBar } from '@/utils/enums';
 import ProgressBar from './component/ProgressBar';
 import style from './style';
+import { loadAllDestionation } from '@/global/redux';
 
 export const Welcome = () => {
   const { t } = useTranslation('welcome');
   const navigation = useNavigation();
+  const dispatch =useAppDispatch();
 
   const [state, setState] = useMergeState({
     currentStep: 1,
     total: 3,
     screenName: ['firstScreen', 'secondScreen', 'thirdScreen'],
   });
+
+  useEffect(()=>{
+    dispatch(loadAllDestionation())
+  })
 
   const renderProgressBar = () => {
     let progressBar: ReactElement[] = [];

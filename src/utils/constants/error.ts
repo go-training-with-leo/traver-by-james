@@ -5,4 +5,5 @@ export const authErrors = {
   wrongPassword: 'auth/wrong-password',
   userNotFound: 'auth/user-not-found',
   cancel: 'User cancelled the login',
+  network: 'auth/network-request-failed',
 };

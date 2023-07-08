@@ -38,7 +38,7 @@ const onLoginSuccess = (
   onSuccess: () => void
 ) => {
   const user: IUser = {
-    displayName: credential.user.displayName ?? '',
+    displayName: credential.user.displayName,
     email: credential.user.email,
     photoUrl: credential.user.photoURL,
     uid: credential.user.uid,
